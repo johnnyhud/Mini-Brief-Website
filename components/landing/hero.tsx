@@ -9,19 +9,24 @@ export function Hero() {
 
   return (
     <section className="relative z-[1] flex flex-col items-center text-center px-5 sm:px-6 pt-16 sm:pt-24 pb-10 sm:pb-14">
-      <h1 className="hero-anim font-display font-extrabold tracking-[-0.04em] leading-[0.98] text-white mb-6 max-w-[900px] text-[clamp(42px,7.6vw,76px)]">
+      <div className="hero-anim mb-6 inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-dim px-3.5 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase text-accent-b">
+        <span className="w-[5px] h-[5px] rounded-full bg-accent-b shadow-[0_0_5px_var(--accent-b)]" />
+        Private by design · Gmail &amp; Outlook
+      </div>
+
+      <h1 className="hero-anim font-display font-extrabold tracking-[-0.04em] leading-[0.98] text-white mb-6 max-w-[900px] text-[clamp(42px,7.6vw,76px)]" style={{ animationDelay: "0.04s" }}>
         <span className="text-grad">Email intelligence</span>
-        <br className="hidden sm:block" /> for executives who can&apos;t afford
-        to miss things.
+        <br className="hidden sm:block" /> that triages your inbox and drafts
+        every reply.
       </h1>
 
       <p
-        className="hero-anim font-body text-fg-2 mb-9 text-[clamp(16px,1.7vw,19px)] max-w-[600px] leading-[1.65]"
-        style={{ animationDelay: "0.08s" }}
+        className="hero-anim font-body text-fg-2 mb-9 text-[clamp(16px,1.7vw,19px)] max-w-[620px] leading-[1.65]"
+        style={{ animationDelay: "0.1s" }}
       >
-        Mini Brief works inside Gmail and Outlook. It triages your inbox, flags
-        what needs a reply, and drafts responses in your own voice — with your
-        email content never stored on our servers.
+        The AI inbox that runs in your browser — never on our servers. Mini Brief
+        triages what matters inside Gmail and Outlook, drafts replies in your own
+        voice, and clears the noise. Your email stays yours.
       </p>
 
       <div className="hero-anim mb-4" style={{ animationDelay: "0.14s" }}>

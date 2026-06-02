@@ -57,7 +57,7 @@ export default function OpengraphImage() {
               display: "flex",
             }}
           >
-            Email intelligence for executives who can&apos;t afford to miss things.
+            Email intelligence that triages your inbox and drafts every reply.
           </div>
           <div style={{ fontSize: 26, color: "#8892b0", maxWidth: 900, display: "flex" }}>
             Works in Gmail and Outlook. Your email content is processed in your browser, never stored on our servers.

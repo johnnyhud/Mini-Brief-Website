@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useState } from "react";
+import Image from "next/image";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -58,9 +59,20 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
       {children}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
-          <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-2xl bg-[rgba(74,98,245,0.12)] border border-accent-border shadow-[0_0_24px_rgba(74,98,245,0.25)]">
-            {status === "done" ? <CheckMark /> : <MailIcon />}
-          </div>
+          {status === "done" ? (
+            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-2xl bg-[rgba(74,98,245,0.12)] border border-accent-border shadow-[0_0_24px_rgba(74,98,245,0.25)]">
+              <CheckMark />
+            </div>
+          ) : (
+            <Image
+              src="/photos/MiniBrief-Icon-Mono-Ink.png"
+              alt="Mini Brief"
+              width={48}
+              height={48}
+              className="w-12 h-12 mx-auto mb-4 rounded-2xl shadow-[0_0_24px_rgba(74,98,245,0.25)]"
+              priority
+            />
+          )}
 
           <div className="flex justify-center mb-3">
             <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.18em] uppercase text-live bg-[rgba(34,211,160,0.08)] border border-[rgba(34,211,160,0.22)] px-3 py-1 rounded-full">
@@ -125,15 +137,6 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
         </DialogContent>
       </Dialog>
     </NewsletterCtx.Provider>
-  );
-}
-
-function MailIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="20" height="16" x="2" y="4" rx="2" />
-      <path d="m22 7-10 5L2 7" />
-    </svg>
   );
 }
 

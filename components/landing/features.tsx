@@ -77,6 +77,43 @@ const FEATURES = [
       </svg>
     ),
   },
+  {
+    title: "Commitments tracking",
+    desc: "Mini Brief pulls promises and deadlines out of your threads — what you owe and what's owed to you — and flags them before they slip.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="m3 17 2 2 4-4" />
+        <path d="m3 7 2 2 4-4" />
+        <path d="M13 6h8" />
+        <path d="M13 12h8" />
+        <path d="M13 18h8" />
+      </svg>
+    ),
+  },
+  {
+    title: "ROI you can see",
+    desc: "Time saved, response times, top senders, and where your inbox hours actually go — the proof Mini Brief is earning its keep.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 3v18h18" />
+        <path d="M18 17V9" />
+        <path d="M13 17V5" />
+        <path d="M8 17v-3" />
+      </svg>
+    ),
+  },
+  {
+    title: "Delegation and team",
+    desc: "Hand a thread or a full catch-up report to your EA or chief of staff. Role-based delegates keep the right people in the loop.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b72ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+  },
 ];
 
 export function Features() {

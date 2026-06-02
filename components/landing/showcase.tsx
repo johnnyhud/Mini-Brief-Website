@@ -27,12 +27,12 @@ function useInView<T extends HTMLElement>() {
   return [ref, inView] as const;
 }
 
-const TONES_ORDER: Array<keyof typeof TONES> = ["quick", "friendly", "professional"];
+const TONES_ORDER: Array<keyof typeof TONES> = ["voice", "brief", "warm"];
 const TONES: Record<string, string> = {
-  quick: "Friday at 9am works — see you then!",
-  friendly: "Hey Sarah, Friday at 9 sounds great. Looking forward to it — let me know if anything shifts on your end!",
-  professional:
+  voice:
     "Hi Sarah — Friday at 9:00 AM works on my calendar. I've blocked the slot and added the call link. Speak then.",
+  brief: "Friday at 9am works — see you then.",
+  warm: "Hey Sarah, Friday at 9 sounds great — really looking forward to it! Let me know if anything shifts on your end.",
 };
 
 const SUMMARY_PROSE =
@@ -73,11 +73,24 @@ const DEMOS: DemoConfig[] = [
     desc: "Mini Brief studies your sent folder to learn your voice, including greetings, sign-offs, and formality, then generates replies that read like you wrote them.",
     bullets: [
       "Learns from up to 100 of your real sent emails",
-      "Three intent presets: Concise, Standard, Detailed",
-      "Tone check before you send — flags aggressive or unclear lines",
+      "Reply by intent — approve, decline, follow up, schedule, and more",
+      "Three tone modes (voice, brief, warm) plus a tone check that flags and fixes harsh lines",
     ],
     Demo: DraftsDemo,
     demoTitle: "Smart Reply — Sarah Chen",
+  },
+  {
+    id: "clients",
+    tag: "Relationships",
+    title: "We keep your client relationships warm.",
+    desc: "Mini Brief builds a profile for every client — status, cadence, history — and quietly watches the threads. When someone important goes quiet, you hear about it before the relationship cools.",
+    bullets: [
+      "Client profiles: status, cadence, notes, and next check-in",
+      "Triage and meeting prep that know who's a client",
+      "Relationship-health alerts when a client goes quiet",
+    ],
+    Demo: ClientsDemo,
+    demoTitle: "Client · Sarah Chen — Acme Corp",
   },
   {
     id: "unsubscribe",
@@ -101,7 +114,7 @@ export function Showcase() {
         What it does
       </div>
       <h2 className="font-display font-bold tracking-[-0.02em] text-white text-center mb-2 leading-[1.15] text-[clamp(26px,3.8vw,40px)]">
-        Three things it does, <span className="text-grad">every day</span>.
+        The work it does, <span className="text-grad">every day</span>.
       </h2>
       <p className="font-body text-[15px] text-fg-2 text-center mb-14 sm:mb-20 max-w-[520px] mx-auto leading-relaxed">
         Not a list of features — the work Mini Brief takes off your plate the
@@ -350,6 +363,79 @@ function UnsubscribeDemo({ isActive }: DemoProps) {
             <p className="font-body text-[12px] text-[#aab0cc] leading-[1.55]">
               Future emails from <span className="text-accent-b">marketingdaily.com</span> (and any subdomain) auto-trash via Gmail's server-side filter.
             </p>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+function ClientsDemo({ isActive }: DemoProps) {
+  const [alert, setAlert] = useState(false);
+
+  useEffect(() => {
+    if (!isActive) {
+      setAlert(false);
+      return;
+    }
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setAlert(true);
+      return;
+    }
+    const t = window.setTimeout(() => setAlert(true), 1600);
+    return () => window.clearTimeout(t);
+  }, [isActive]);
+
+  return (
+    <>
+      <div className="px-3 py-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] mb-3 flex items-center gap-3">
+        <div
+          className="w-9 h-9 rounded-full flex items-center justify-center font-display text-[12px] font-bold text-white shrink-0"
+          style={{ background: "linear-gradient(135deg,#4a62f5,#7b5cff)" }}
+        >
+          SC
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-display text-[12px] font-semibold text-white">Sarah Chen</div>
+          <div className="font-body text-[11px] text-fg-3 truncate">Acme Corp · VP Operations</div>
+        </div>
+        <span className="font-mono text-[8px] tracking-[0.12em] uppercase text-live bg-[rgba(34,211,160,0.08)] border border-[rgba(34,211,160,0.22)] px-2 py-0.5 rounded-full shrink-0">
+          Active
+        </span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-1.5 mb-3">
+        {[
+          { k: "Cadence", v: "Every 2 wks" },
+          { k: "Last contact", v: "9 days ago" },
+          { k: "Open threads", v: "2" },
+        ].map((m) => (
+          <div key={m.k} className="rounded-lg bg-white/[0.03] border border-white/[0.06] px-2.5 py-2 text-center">
+            <div className="font-mono text-[8px] tracking-[0.1em] uppercase text-fg-3 mb-0.5">{m.k}</div>
+            <div className="font-display text-[12px] font-semibold text-white">{m.v}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="min-h-[70px]">
+        {alert ? (
+          <div className="rounded-[10px] border border-[rgba(245,158,74,0.3)] bg-[rgba(245,158,74,0.08)] p-3 animate-in fade-in slide-in-from-bottom-1 duration-300">
+            <div className="flex items-center gap-2 mb-1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e4a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <path d="M12 9v4" />
+                <path d="M12 17h.01" />
+              </svg>
+              <span className="font-display text-[12px] font-semibold text-white">Going quiet</span>
+            </div>
+            <p className="font-body text-[11px] text-[#aab0cc] leading-[1.5]">
+              Sarah hasn&apos;t replied in 9 days — past your 2-week cadence. Mini Brief flagged it before the relationship cooled.
+            </p>
+          </div>
+        ) : (
+          <div className="rounded-[10px] border border-dashed border-white/[0.10] bg-white/[0.02] p-3 flex items-center gap-2">
+            <span className="w-[10px] h-[10px] rounded-full border-2 border-accent-b border-t-transparent animate-spin" />
+            <span className="font-body text-[11px] text-fg-3">Watching this relationship…</span>
           </div>
         )}
       </div>
