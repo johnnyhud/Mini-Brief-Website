@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { buildConfirmationEmail, getResend } from "@/lib/resend";
+import { appendSignup } from "@/lib/signups-excel";
 
 export const runtime = "nodejs";
 
@@ -32,8 +33,25 @@ export async function POST(req: Request) {
       console.error("[subscribe] supabase insert failed", error);
       return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
     }
+  } else if (process.env.NODE_ENV !== "production") {
+    // Local dev with no Supabase configured — store in the Excel file. The
+    // filesystem is read-only on serverless hosts, so this never runs in prod.
+    try {
+      appendSignup({
+        email,
+        source,
+        signedUpAt: new Date().toISOString(),
+        userAgent,
+      });
+    } catch (err) {
+      console.error("[subscribe] excel append failed", err);
+      return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    }
   } else {
-    console.log("[subscribe] (no supabase configured) new signup:", { email, source });
+    // Production but Supabase isn't configured — surface it clearly instead of
+    // attempting a read-only filesystem write.
+    console.error("[subscribe] no storage configured in production");
+    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 
   const resend = getResend();

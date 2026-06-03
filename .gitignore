@@ -10,3 +10,6 @@ dist
 next-env.d.ts
 .vercel
 .DS_Store
+
+# Local sign-up store (contains real emails — never commit)
+New User Sign-Ups.xlsx
