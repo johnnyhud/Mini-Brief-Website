@@ -25,7 +25,7 @@ function CheckIcon() {
 
 export function Privacy() {
   return (
-    <Reveal as="section" id="privacy" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 border-t border-white/[0.05]">
+    <Reveal as="section" variant="right" id="privacy" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 border-t border-white/[0.05]">
       <div className="relative max-w-[920px] mx-auto rounded-3xl border border-accent-border bg-[rgba(13,21,40,0.55)] backdrop-blur-md overflow-hidden">
         <div
           className="absolute -top-px left-1/2 -translate-x-1/2 w-[460px] h-[200px] pointer-events-none"

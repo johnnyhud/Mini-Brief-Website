@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollProgress } from "@/components/effects/scroll-progress";
+import { Magnetic } from "@/components/effects/magnetic";
 import { Logo } from "./logo";
 import { useNewsletter } from "./newsletter-dialog";
 
@@ -36,9 +37,11 @@ export function Nav() {
       className="site-nav sticky top-0 z-50 flex items-center justify-between border-b border-white/[0.06] backdrop-blur-md px-6 sm:px-12"
     >
       <Logo />
-      <Button variant="primary" size="md" onClick={() => open("nav-primary")}>
-        Join waitlist
-      </Button>
+      <Magnetic>
+        <Button variant="primary" size="md" onClick={() => open("nav-primary")}>
+          Join waitlist
+        </Button>
+      </Magnetic>
       <ScrollProgress />
     </nav>
   );

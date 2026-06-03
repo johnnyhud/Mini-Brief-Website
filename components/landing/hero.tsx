@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Magnetic } from "@/components/effects/magnetic";
 import { HeroCard } from "./hero-card";
 import { useNewsletter } from "./newsletter-dialog";
 
@@ -10,12 +11,12 @@ export function Hero() {
   return (
     <section className="relative z-[1] flex flex-col items-center text-center px-5 sm:px-6 pt-16 sm:pt-24 pb-10 sm:pb-14">
       <div className="hero-anim mb-6 inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-dim px-3.5 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase text-accent-b">
-        <span className="w-[5px] h-[5px] rounded-full bg-accent-b shadow-[0_0_5px_var(--accent-b)]" />
+        <span className="pulse-soft w-[5px] h-[5px] rounded-full bg-accent-b shadow-[0_0_5px_var(--accent-b)]" />
         Private by design · Gmail &amp; Outlook
       </div>
 
       <h1 className="hero-anim font-display font-extrabold tracking-[-0.04em] leading-[0.98] text-white mb-6 max-w-[900px] text-[clamp(42px,7.6vw,76px)]" style={{ animationDelay: "0.04s" }}>
-        <span className="text-grad">Email intelligence</span>
+        <span className="text-grad text-grad-flow">Email intelligence</span>
         <br className="hidden sm:block" /> that triages your inbox and drafts
         every reply.
       </h1>
@@ -30,9 +31,11 @@ export function Hero() {
       </p>
 
       <div className="hero-anim mb-4" style={{ animationDelay: "0.14s" }}>
-        <Button variant="hero" size="lg" onClick={() => open("hero-primary")}>
-          Join the waitlist
-        </Button>
+        <Magnetic>
+          <Button variant="hero" size="lg" onClick={() => open("hero-primary")}>
+            Join the waitlist
+          </Button>
+        </Magnetic>
       </div>
 
       <p
@@ -56,7 +59,7 @@ export function Hero() {
           className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 w-[min(560px,80vw)] h-10 z-0 rounded-[50%]"
           style={{ background: "radial-gradient(ellipse, rgba(0,0,0,0.45), transparent 70%)", filter: "blur(8px)" }}
         />
-        <div className="relative z-[1]">
+        <div className="relative z-[1] float-soft">
           <HeroCard />
         </div>
       </div>

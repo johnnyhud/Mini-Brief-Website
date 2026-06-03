@@ -3,12 +3,15 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
+type RevealVariant = "up" | "left" | "right" | "zoom" | "fade";
+
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   as?: React.ElementType;
   stagger?: boolean;
+  variant?: RevealVariant;
 };
 
-export function Reveal({ as: Tag = "div", stagger = false, className, children, ...rest }: Props) {
+export function Reveal({ as: Tag = "div", stagger = false, variant = "up", className, children, ...rest }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -29,11 +32,17 @@ export function Reveal({ as: Tag = "div", stagger = false, className, children, 
     return () => io.disconnect();
   }, []);
 
+  const baseClass = stagger
+    ? "reveal-stagger"
+    : variant === "up"
+      ? "reveal"
+      : `reveal-${variant}`;
+
   const Component = Tag as React.ElementType;
   return (
     <Component
       ref={ref as React.Ref<HTMLElement>}
-      className={cn(stagger ? "reveal-stagger" : "reveal", className)}
+      className={cn(baseClass, className)}
       {...rest}
     >
       {children}

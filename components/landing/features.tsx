@@ -1,3 +1,5 @@
+"use client";
+
 import { Reveal } from "@/components/effects/reveal-on-scroll";
 
 const FEATURES = [
@@ -116,6 +118,12 @@ const FEATURES = [
   },
 ];
 
+function onCardMove(e: React.MouseEvent<HTMLDivElement>) {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--fx", `${((e.clientX - r.left) / r.width) * 100}%`);
+  e.currentTarget.style.setProperty("--fy", `${((e.clientY - r.top) / r.height) * 100}%`);
+}
+
 export function Features() {
   return (
     <Reveal as="section" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 border-t border-white/[0.05]">
@@ -129,9 +137,9 @@ export function Features() {
         Beyond triage, drafting, and unsubscribe, Mini Brief quietly handles the
         rest of the inbox grind.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1040px] mx-auto">
+      <Reveal stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1040px] mx-auto">
         {FEATURES.map((f) => (
-          <div key={f.title} className="feat-inner h-full !p-5 sm:!p-6">
+          <div key={f.title} onMouseMove={onCardMove} className="feat-inner h-full !p-5 sm:!p-6">
             <div className="feat-icon w-10 h-10 rounded-xl flex items-center justify-center bg-[rgba(74,98,245,0.10)] border border-[rgba(74,98,245,0.20)] mb-3.5">
               {f.icon}
             </div>
@@ -139,7 +147,7 @@ export function Features() {
             <p className="font-body text-[13px] text-fg-2 leading-[1.6]">{f.desc}</p>
           </div>
         ))}
-      </div>
+      </Reveal>
     </Reveal>
   );
 }

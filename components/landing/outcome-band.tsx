@@ -8,7 +8,7 @@ const SHIFTS = [
 
 export function OutcomeBand() {
   return (
-    <Reveal as="section" className="relative z-[1] px-6 sm:px-12 py-12 sm:py-16">
+    <Reveal as="section" variant="fade" className="relative z-[1] px-6 sm:px-12 py-12 sm:py-16">
       <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
         What changes
       </div>

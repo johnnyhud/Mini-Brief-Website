@@ -48,7 +48,7 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <Reveal as="section" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 border-t border-white/[0.05]">
+    <Reveal as="section" variant="left" className="relative z-[1] px-6 sm:px-12 py-14 sm:py-20 border-t border-white/[0.05]">
       <div className="font-body text-[12px] font-semibold tracking-[0.08em] uppercase text-accent-b/70 text-center mb-3">
         How it works
       </div>
@@ -59,7 +59,7 @@ export function HowItWorks() {
         Mini Brief runs in your browser. Your account keeps settings and VIPs in sync — your email content never reaches our servers.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[1040px] mx-auto">
+      <Reveal stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[1040px] mx-auto">
         {STEPS.map((s) => (
           <div key={s.n} className="feat-inner h-full !p-6 relative overflow-hidden">
             <span
@@ -80,7 +80,7 @@ export function HowItWorks() {
             <p className="font-body text-[13px] text-fg-2 leading-[1.6]">{s.desc}</p>
           </div>
         ))}
-      </div>
+      </Reveal>
     </Reveal>
   );
 }

@@ -79,6 +79,40 @@ body {
   transform: translateY(0) scale(1);
   filter: blur(0);
 }
+
+/* Directional / zoom / fade reveal variants */
+.reveal-left,
+.reveal-right,
+.reveal-zoom,
+.reveal-fade {
+  opacity: 0;
+  transition:
+    opacity 0.8s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+  will-change: transform, opacity, filter;
+}
+.reveal-left {
+  transform: translateX(-46px);
+}
+.reveal-right {
+  transform: translateX(46px);
+}
+.reveal-zoom {
+  transform: scale(0.93);
+  filter: blur(4px);
+}
+.reveal-fade {
+  transform: translateY(10px);
+}
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-zoom.visible,
+.reveal-fade.visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
 .reveal-stagger > * {
   opacity: 0;
   transform: translateY(16px);
@@ -98,6 +132,10 @@ body {
 .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.21s; }
 .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.29s; }
 .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.37s; }
+.reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.45s; }
+.reveal-stagger.visible > *:nth-child(7) { transition-delay: 0.53s; }
+.reveal-stagger.visible > *:nth-child(8) { transition-delay: 0.61s; }
+.reveal-stagger.visible > *:nth-child(9) { transition-delay: 0.69s; }
 
 /* ───────── Live badge ───────── */
 @keyframes live-pulse {
@@ -307,6 +345,87 @@ body {
 @keyframes demo-drift-b {
   0%, 100% { transform: translate(0, 0); }
   50% { transform: translate(-28px, 22px); }
+}
+
+/* ───────── Smooth ambient flourishes ───────── */
+
+/* Slowly flowing gradient text (hero headline) */
+.text-grad-flow {
+  background-size: 220% 220%;
+  animation: grad-flow 9s ease-in-out infinite;
+}
+@keyframes grad-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Gentle idle float */
+.float-soft {
+  animation: float-soft 6.5s ease-in-out infinite;
+}
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Soft breathing glow (hero badge dot) */
+.pulse-soft {
+  animation: pulse-soft 2.8s ease-in-out infinite;
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; box-shadow: 0 0 5px var(--accent-b); }
+  50% { opacity: 0.7; box-shadow: 0 0 11px var(--accent-b); }
+}
+
+/* Shine sweep across gradient buttons on hover */
+.btn-grad {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-grad::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  transform: translateX(-200%) skewX(-18deg);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+.btn-grad:hover::after {
+  transform: translateX(380%) skewX(-18deg);
+}
+
+/* Cursor-follow glow on feature cards */
+.feat-inner {
+  overflow: hidden;
+}
+.feat-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    150px circle at var(--fx, 50%) var(--fy, 0%),
+    rgba(91, 114, 255, 0.14),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.feat-inner:hover::after {
+  opacity: 1;
 }
 
 .feat-inner {
