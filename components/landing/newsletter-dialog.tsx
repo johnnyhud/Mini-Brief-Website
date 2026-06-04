@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -9,6 +9,13 @@ import { Input } from "@/components/ui/input";
 
 type Ctx = {
   open: (source?: string) => void;
+};
+
+type Result = {
+  code: string | null;
+  position: number | null;
+  total: number | null;
+  referrals: number;
 };
 
 const NewsletterCtx = createContext<Ctx | null>(null);
@@ -24,11 +31,24 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
   const [source, setSource] = useState<string>("landing");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+  const [result, setResult] = useState<Result | null>(null);
+  // The referral code from an incoming ?ref= link, captured once on mount.
+  const referrer = useRef<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const ref = new URLSearchParams(window.location.search).get("ref");
+      if (ref && /^[a-z0-9]{1,32}$/i.test(ref)) referrer.current = ref.toLowerCase();
+    } catch {
+      /* no-op */
+    }
+  }, []);
 
   const open = useCallback((src = "landing") => {
     setSource(src);
     setStatus("idle");
     setEmail("");
+    setResult(null);
     setIsOpen(true);
   }, []);
 
@@ -40,12 +60,16 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), source }),
+        body: JSON.stringify({ email: email.trim(), source, ref: referrer.current ?? undefined }),
       });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error ?? "Something went wrong");
-      }
+      const data = (await res.json().catch(() => ({}))) as Result & { ok?: boolean; error?: string };
+      if (!res.ok) throw new Error(data.error ?? "Something went wrong");
+      setResult({
+        code: data.code ?? null,
+        position: data.position ?? null,
+        total: data.total ?? null,
+        referrals: data.referrals ?? 0,
+      });
       setStatus("done");
       toast.success("You're on the list — see you at launch.");
     } catch (err) {
@@ -82,17 +106,7 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
           </div>
 
           {status === "done" ? (
-            <>
-              <DialogTitle className="text-center">You're in.</DialogTitle>
-              <DialogDescription className="mt-2 mb-5 text-center">
-                Confirmation is on its way. We'll send one more email — the launch — and that's it.
-              </DialogDescription>
-              <div className="flex justify-center">
-                <Button variant="ghost" size="md" onClick={() => setIsOpen(false)}>
-                  Close
-                </Button>
-              </div>
-            </>
+            <DoneState result={result} onClose={() => setIsOpen(false)} />
           ) : (
             <>
               <DialogTitle className="text-center">Get the launch email.</DialogTitle>
@@ -130,13 +144,101 @@ export function NewsletterProvider({ children }: { children: React.ReactNode }) 
               </form>
 
               <p className="font-body text-[11px] text-fg-3 text-center mt-4 leading-relaxed">
-                One launch email. No marketing blasts. We don't share your address — ever.
+                No marketing blasts — just product news. We don't share your address, ever.
               </p>
             </>
           )}
         </DialogContent>
       </Dialog>
     </NewsletterCtx.Provider>
+  );
+}
+
+function DoneState({ result, onClose }: { result: Result | null; onClose: () => void }) {
+  const [copied, setCopied] = useState(false);
+
+  const shareUrl = (() => {
+    if (!result?.code) return null;
+    const origin =
+      (typeof window !== "undefined" && window.location.origin) ||
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      "https://minibrief.ai";
+    return `${origin}/?ref=${result.code}`;
+  })();
+
+  const shareText = "I just joined the MiniBrief waitlist — AI email intelligence for Gmail & Outlook that never stores your email. Skip ahead with my link:";
+
+  const copy = async () => {
+    if (!shareUrl) return;
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      toast.success("Link copied — share it to move up.");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("Couldn't copy the link");
+    }
+  };
+
+  return (
+    <>
+      <DialogTitle className="text-center">
+        {result?.position ? (
+          <>
+            You&rsquo;re <span className="text-accent-b">#{result.position.toLocaleString()}</span> in line.
+          </>
+        ) : (
+          "You're in."
+        )}
+      </DialogTitle>
+      <DialogDescription className="mt-2 mb-5 text-center">
+        {shareUrl
+          ? "Move up the queue for early access — every friend who joins with your link bumps you ahead."
+          : "Confirmation is on its way. We'll be in touch as launch gets close."}
+      </DialogDescription>
+
+      {shareUrl && (
+        <>
+          <div className="flex items-center gap-2 rounded-xl border border-white/[0.10] bg-[rgba(255,255,255,0.03)] p-1.5 pl-3">
+            <span className="flex-1 truncate font-mono text-[12px] text-fg-2">{shareUrl}</span>
+            <Button type="button" variant="primary" size="sm" onClick={copy} className="shrink-0">
+              {copied ? "Copied" : "Copy link"}
+            </Button>
+          </div>
+
+          <div className="mt-3 flex gap-2">
+            <a
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.10] bg-[rgba(255,255,255,0.03)] py-2.5 font-body text-[13px] text-fg-2 transition-colors hover:text-white hover:border-white/20"
+            >
+              Share on X
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.10] bg-[rgba(255,255,255,0.03)] py-2.5 font-body text-[13px] text-fg-2 transition-colors hover:text-white hover:border-white/20"
+            >
+              LinkedIn
+            </a>
+          </div>
+
+          <p className="font-body text-[12px] text-fg-3 text-center mt-4 leading-relaxed">
+            {result && result.referrals > 0
+              ? `${result.referrals} ${result.referrals === 1 ? "friend has" : "friends have"} joined with your link.`
+              : "No referrals yet — share your link to climb the list."}
+          </p>
+        </>
+      )}
+
+      <div className="flex justify-center mt-4">
+        <Button variant="ghost" size="md" onClick={onClose}>
+          Close
+        </Button>
+      </div>
+    </>
   );
 }
 

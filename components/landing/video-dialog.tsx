@@ -4,11 +4,12 @@ import { createContext, useCallback, useContext, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 /**
- * Drop the demo video here when ready:  public/video/intro.mp4
- * (optional poster frame:               public/photos/intro-poster.jpg)
- * Change these two constants if you use different filenames.
+ * The demo video is served from Vercel Blob. Set the public Blob URL in:
+ *   NEXT_PUBLIC_DEMO_VIDEO_URL   (e.g. https://<id>.public.blob.vercel-storage.com/intro.mp4)
+ * It falls back to the local file at public/video/intro.mp4 when unset.
+ * Optional poster frame:  public/photos/intro-poster.jpg
  */
-const VIDEO_SRC = "/video/intro.mp4";
+const VIDEO_SRC = process.env.NEXT_PUBLIC_DEMO_VIDEO_URL ?? "/video/intro.mp4";
 const POSTER_SRC = "/photos/intro-poster.jpg";
 
 type Ctx = { open: (source?: string) => void };

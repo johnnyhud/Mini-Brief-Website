@@ -13,3 +13,7 @@ next-env.d.ts
 
 # Local sign-up store (contains real emails — never commit)
 New User Sign-Ups.xlsx
+.env*
+
+# Stray archives
+*.zip

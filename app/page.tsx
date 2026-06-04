@@ -16,11 +16,13 @@ import { Privacy } from "@/components/landing/privacy";
 import { Showcase } from "@/components/landing/showcase";
 import { TrustBand } from "@/components/landing/trust-band";
 import { VideoProvider } from "@/components/landing/video-dialog";
+import { FaqJsonLd } from "@/components/seo/json-ld";
 
 export default function HomePage() {
   return (
     <NewsletterProvider>
       <VideoProvider>
+        <FaqJsonLd />
         <IntroSplash />
         <div className="site-backdrop" aria-hidden="true" />
 

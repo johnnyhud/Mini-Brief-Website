@@ -23,6 +23,9 @@ export function Footer() {
           <Link href="/terms" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
             Terms of Service
           </Link>
+          <Link href="/security" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
+            Security
+          </Link>
           <Link href="/accessibility" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
             Accessibility
           </Link>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, Space_Mono } from "next/font/google";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/next";
+import { SiteJsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -48,7 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable} ${spaceMono.variable}`} suppressHydrationWarning>
       <body>
+        <SiteJsonLd />
         {children}
+        <Analytics />
         <Toaster
           theme="dark"
           position="bottom-center"

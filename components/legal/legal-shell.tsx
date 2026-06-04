@@ -68,6 +68,7 @@ export function LegalShell({ title, updated, children }: Props) {
           <nav className="flex items-center gap-5 font-body text-[12px] text-fg-3">
             <Link href="/privacy" className="hover:text-fg-2 transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-fg-2 transition-colors">Terms</Link>
+            <Link href="/security" className="hover:text-fg-2 transition-colors">Security</Link>
             <Link href="/accessibility" className="hover:text-fg-2 transition-colors">Accessibility</Link>
           </nav>
         </footer>
