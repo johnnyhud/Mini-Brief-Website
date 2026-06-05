@@ -77,7 +77,7 @@ export default function OpengraphImage() {
             color: "#4a5278",
           }}
         >
-          <div style={{ display: "flex" }}>minibrief.ai</div>
+          <div style={{ display: "flex" }}>minibrief.app</div>
           <div style={{ display: "flex" }}>Launching soon · Chrome &amp; Firefox</div>
         </div>
       </div>

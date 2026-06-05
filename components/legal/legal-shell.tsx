@@ -26,7 +26,7 @@ export function LegalShell({ title, updated, children }: Props) {
               className="rounded-[22%]"
             />
             <span className="font-display text-[17px] font-extrabold tracking-[-0.02em] leading-none">
-              <span className="text-mini">Mini</span>Brief<span className="text-accent-b">.ai</span>
+              <span className="text-mini">Mini</span>Brief<span className="text-accent-b">AI</span>
             </span>
           </Link>
         </header>
@@ -53,8 +53,8 @@ export function LegalShell({ title, updated, children }: Props) {
               This document is written in plain language for transparency. It is
               not legal advice and is being finalized ahead of launch. Questions?
               Email{" "}
-              <a href="mailto:privacy@minibrief.ai" className="text-accent-b hover:underline">
-                privacy@minibrief.ai
+              <a href="mailto:privacy@minibrief.app" className="text-accent-b hover:underline">
+                privacy@minibrief.app
               </a>
               .
             </p>
@@ -63,7 +63,7 @@ export function LegalShell({ title, updated, children }: Props) {
 
         <footer className="border-t border-white/[0.06] px-6 sm:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="font-body text-[12px] text-fg-3">
-            © {new Date().getFullYear()} MiniBrief.ai · Private by design.
+            © {new Date().getFullYear()} MiniBriefAI · Private by design.
           </div>
           <nav className="flex items-center gap-5 font-body text-[12px] text-fg-3">
             <Link href="/privacy" className="hover:text-fg-2 transition-colors">Privacy</Link>

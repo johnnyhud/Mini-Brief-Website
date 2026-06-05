@@ -111,7 +111,7 @@ export default function SecurityPage() {
         <p>
           We welcome reports from the security community. If you believe you
           have found a security issue, please email{" "}
-          <a href="mailto:security@minibrief.ai">security@minibrief.ai</a> with
+          <a href="mailto:security@minibrief.app">security@minibrief.app</a> with
           enough detail to reproduce it. We ask that you give us a reasonable
           opportunity to investigate and address the issue before any public
           disclosure, and that you avoid accessing or modifying other people&rsquo;s

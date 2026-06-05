@@ -102,7 +102,18 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>7. Intellectual property</h2>
+        <h2>7. Fair use</h2>
+        <p>
+          To keep the Service reliable and affordable for everyone, AI features
+          are subject to a fair-use limit of 120 AI requests per user per day.
+          We may adjust this limit, and we may throttle, suspend, or limit
+          accounts that materially exceed normal individual use or that attempt
+          to circumvent the limit.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Intellectual property</h2>
         <p>
           The MiniBrief name, logo, site content, and design are owned by us
           and may not be copied or reused without permission. Third-party names
@@ -113,7 +124,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>8. Third-party services</h2>
+        <h2>9. Third-party services</h2>
         <p>
           MiniBrief relies on third-party services including Google, Microsoft,
           Anthropic, Supabase, and Stripe. Your use of those services is also
@@ -123,7 +134,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>9. No warranty</h2>
+        <h2>10. No warranty</h2>
         <p>
           MiniBrief is provided &ldquo;as is&rdquo; and &ldquo;as
           available,&rdquo; without warranties of any kind, express or implied,
@@ -135,7 +146,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>10. Limitation of liability</h2>
+        <h2>11. Limitation of liability</h2>
         <p>
           To the maximum extent permitted by law, MiniBrief and its operators
           will not be liable for any indirect, incidental, special, or
@@ -147,7 +158,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>11. Indemnification</h2>
+        <h2>12. Indemnification</h2>
         <p>
           You agree to indemnify and hold harmless MiniBrief and its operators
           from any claims, losses, liabilities, damages, and expenses
@@ -159,7 +170,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>12. Termination</h2>
+        <h2>13. Termination</h2>
         <p>
           You may stop using MiniBrief and disconnect your accounts at any time.
           We may suspend or terminate access if you violate these terms or to
@@ -171,7 +182,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>13. Governing law</h2>
+        <h2>14. Governing law</h2>
         <p>
           These terms are governed by the laws of the State of New York, United
           States, without regard to its conflict-of-laws rules. Subject to the
@@ -182,7 +193,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>14. Dispute resolution; arbitration and class-action waiver</h2>
+        <h2>15. Dispute resolution; arbitration and class-action waiver</h2>
         <p>
           <em>
             Please read this section carefully — it affects how disputes are
@@ -204,7 +215,7 @@ export default function TermsPage() {
           requests for injunctive or equitable relief to stop infringement or
           misuse of intellectual property. You may opt out of this arbitration
           agreement by emailing{" "}
-          <a href="mailto:legal@minibrief.ai">legal@minibrief.ai</a> within 30
+          <a href="mailto:legal@minibrief.app">legal@minibrief.app</a> within 30
           days of first accepting these terms; opting out will not affect the
           other terms. Where applicable law prohibits binding arbitration or a
           class-action waiver, this section does not apply to you to that
@@ -213,7 +224,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>15. General</h2>
+        <h2>16. General</h2>
         <p>
           These terms, together with our{" "}
           <a href="/privacy">Privacy Policy</a>, are the entire agreement
@@ -228,11 +239,11 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>16. Changes and contact</h2>
+        <h2>17. Changes and contact</h2>
         <p>
           We may update these terms as the product develops; the &ldquo;Last
           updated&rdquo; date above will change accordingly. Questions can be
-          sent to <a href="mailto:legal@minibrief.ai">legal@minibrief.ai</a>.
+          sent to <a href="mailto:legal@minibrief.app">legal@minibrief.app</a>.
         </p>
       </section>
     </LegalShell>

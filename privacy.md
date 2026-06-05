@@ -77,7 +77,7 @@ We rely on a small number of third parties, each for a narrow purpose:
 
 ## 5. Your choices and rights
 
-- You can ask us to access or delete your waitlist data or account data at any time by emailing privacy@minibrief.ai.
+- You can ask us to access or delete your waitlist data or account data at any time by emailing privacy@minibrief.app.
 - You can uninstall the extension, which removes its local data from your browser; contact us to delete the account itself.
 - Depending on where you live (for example, under GDPR or CCPA), you may have additional rights to access, correct, or delete personal data. Contact us and we will honor applicable requests.
 
@@ -91,6 +91,6 @@ MiniBrief is intended for working professionals and is not directed to children.
 
 We may update this policy as the product evolves. If we change how we use Google or Microsoft user data in a materially different way than disclosed here, we will notify you and, where required, ask for your consent before the new use takes effect. Material changes are reflected by the "Last updated" date above.
 
-Questions? Email privacy@minibrief.ai.
+Questions? Email privacy@minibrief.app.
 
-© 2026 MiniBrief.ai · Private by design.
+© 2026 MiniBriefAI · Private by design.

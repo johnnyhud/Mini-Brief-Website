@@ -29,7 +29,7 @@ export function Logo() {
         priority
       />
       <span className="font-display text-[19px] font-extrabold tracking-[-0.02em] leading-none">
-        <span className="text-mini">Mini</span>Brief<span className="text-accent-b">.ai</span>
+        <span className="text-mini">Mini</span>Brief<span className="text-accent-b">AI</span>
       </span>
     </button>
   );

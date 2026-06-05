@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.ai";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.app";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
@@ -23,7 +23,7 @@ export function SiteJsonLd() {
     logo: `${siteUrl}/photos/MiniBrief-Icon-Mono-Ink.png`,
     description:
       "Email intelligence for Gmail and Outlook. Catch-up reports, VIP alerts, voice-matched drafts, and one-click unsubscribe — your email is never stored on our servers.",
-    email: "hello@minibrief.ai",
+    email: "hello@minibrief.app",
   };
 
   const website = {

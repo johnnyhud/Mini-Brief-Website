@@ -162,7 +162,7 @@ function DoneState({ result, onClose }: { result: Result | null; onClose: () => 
     const origin =
       (typeof window !== "undefined" && window.location.origin) ||
       process.env.NEXT_PUBLIC_SITE_URL ||
-      "https://minibrief.ai";
+      "https://minibrief.app";
     return `${origin}/?ref=${result.code}`;
   })();
 

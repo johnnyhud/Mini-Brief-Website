@@ -11,7 +11,7 @@ export function getResend(): Resend | null {
 }
 
 export function buildConfirmationEmail(toEmail: string) {
-  const from = process.env.RESEND_FROM_EMAIL ?? "Mini Brief <hello@minibrief.ai>";
+  const from = process.env.RESEND_FROM_EMAIL ?? "Mini Brief <hello@minibrief.app>";
   const subject = "You're on the Mini Brief list";
   const html = `
     <!doctype html>
@@ -22,7 +22,7 @@ export function buildConfirmationEmail(toEmail: string) {
             <table width="520" cellpadding="0" cellspacing="0" style="max-width:520px;background:#0d1528;border:1px solid rgba(74,98,245,0.25);border-radius:18px;overflow:hidden">
               <tr><td style="padding:32px 32px 24px">
                 <div style="font-family:Outfit,Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:#ffffff">
-                  <span style="color:#6b7299">Mini</span>Brief<span style="color:#5b72ff">.ai</span>
+                  <span style="color:#6b7299">Mini</span>Brief<span style="color:#5b72ff">AI</span>
                 </div>
               </td></tr>
               <tr><td style="padding:8px 32px 24px">
@@ -31,7 +31,7 @@ export function buildConfirmationEmail(toEmail: string) {
                 <p style="font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.6;color:#8892b0;margin:0">Nothing else until then. No marketing, just the launch notice.</p>
               </td></tr>
               <tr><td style="padding:0 32px 32px;border-top:1px solid rgba(255,255,255,0.06)">
-                <p style="font-family:Inter,Arial,sans-serif;font-size:12px;color:#4a5278;margin:24px 0 0">Sent because ${toEmail} joined the early-access list at minibrief.ai</p>
+                <p style="font-family:Inter,Arial,sans-serif;font-size:12px;color:#4a5278;margin:24px 0 0">Sent because ${toEmail} joined the early-access list at minibrief.app</p>
               </td></tr>
             </table>
           </td></tr>

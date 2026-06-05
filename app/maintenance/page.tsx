@@ -34,10 +34,10 @@ export default function Maintenance() {
         <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-fg-3">
           Questions?{" "}
           <a
-            href="mailto:hello@minibrief.ai"
+            href="mailto:hello@minibrief.app"
             className="text-accent-b link-underline"
           >
-            hello@minibrief.ai
+            hello@minibrief.app
           </a>
         </p>
       </section>

@@ -29,7 +29,7 @@ export function Footer() {
           <Link href="/accessibility" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
             Accessibility
           </Link>
-          <a href="mailto:privacy@minibrief.ai" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
+          <a href="mailto:privacy@minibrief.app" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
             Contact
           </a>
         </nav>
@@ -37,7 +37,7 @@ export function Footer() {
 
       <div className="max-w-[1040px] mx-auto mt-9 pt-5 border-t border-white/[0.05]">
         <p className="font-body text-[12px] text-fg-3">
-          © {new Date().getFullYear()} MiniBrief.ai · Private by design. Your email is never stored.
+          © {new Date().getFullYear()} MiniBriefAI · Private by design. Your email is never stored.
         </p>
       </div>
     </footer>

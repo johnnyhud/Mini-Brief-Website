@@ -149,7 +149,7 @@ export default function PrivacyPage() {
       <section>
         <h2>5. Your choices and rights</h2>
         <ul>
-          <li>You can ask us to access or delete your waitlist data or account data at any time by emailing <a href="mailto:privacy@minibrief.ai">privacy@minibrief.ai</a>.</li>
+          <li>You can ask us to access or delete your waitlist data or account data at any time by emailing <a href="mailto:privacy@minibrief.app">privacy@minibrief.app</a>.</li>
           <li>You can uninstall the extension, which removes its local data from your browser; contact us to delete the account itself.</li>
           <li>Depending on where you live (for example, under GDPR or CCPA), you may have additional rights to access, correct, or delete personal data. Contact us and we will honor applicable requests.</li>
         </ul>
@@ -178,7 +178,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           Questions? Email{" "}
-          <a href="mailto:privacy@minibrief.ai">privacy@minibrief.ai</a>.
+          <a href="mailto:privacy@minibrief.app">privacy@minibrief.app</a>.
         </p>
       </section>
     </LegalShell>

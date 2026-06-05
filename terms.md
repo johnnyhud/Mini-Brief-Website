@@ -8,7 +8,7 @@ lastUpdated: "2026-06-03"
 
 Last updated: June 3, 2026
 
-These terms govern your use of MiniBrief — the website, the waitlist, and the MiniBrief browser extension. By using any of them, you agree to these terms and to our [Privacy Policy](https://minibrief.ai/privacy). If you do not agree, please do not use MiniBrief.
+These terms govern your use of MiniBrief — the website, the waitlist, and the MiniBrief browser extension. By using any of them, you agree to these terms and to our [Privacy Policy](https://minibrief.app/privacy). If you do not agree, please do not use MiniBrief.
 
 ## 1. What MiniBrief is
 
@@ -76,14 +76,14 @@ These terms are governed by the laws of the State of New York, United States, wi
 
 Except as set out below, you and MiniBrief agree to resolve any dispute arising out of or relating to these terms or MiniBrief through final and binding individual arbitration, rather than in court, governed by the Federal Arbitration Act. You and MiniBrief waive any right to a jury trial and agree that disputes will be brought only in an individual capacity, and not as a plaintiff or class member in any class, consolidated, or representative proceeding.
 
-This does not apply to: claims that qualify for small-claims court, or requests for injunctive or equitable relief to stop infringement or misuse of intellectual property. You may opt out of this arbitration agreement by emailing legal@minibrief.ai within 30 days of first accepting these terms; opting out will not affect the other terms. Where applicable law prohibits binding arbitration or a class-action waiver, this section does not apply to you to that extent.
+This does not apply to: claims that qualify for small-claims court, or requests for injunctive or equitable relief to stop infringement or misuse of intellectual property. You may opt out of this arbitration agreement by emailing legal@minibrief.app within 30 days of first accepting these terms; opting out will not affect the other terms. Where applicable law prohibits binding arbitration or a class-action waiver, this section does not apply to you to that extent.
 
 ## 15. General
 
-These terms, together with our [Privacy Policy](https://minibrief.ai/privacy), are the entire agreement between you and MiniBrief and supersede any prior understandings. If any provision is found unenforceable, the rest will remain in full force, and the unenforceable provision will be applied to the maximum extent permitted. Our failure to enforce any provision is not a waiver of it. You may not assign or transfer these terms without our consent; we may assign them, for example as part of a merger, acquisition, or sale of assets, with notice to you.
+These terms, together with our [Privacy Policy](https://minibrief.app/privacy), are the entire agreement between you and MiniBrief and supersede any prior understandings. If any provision is found unenforceable, the rest will remain in full force, and the unenforceable provision will be applied to the maximum extent permitted. Our failure to enforce any provision is not a waiver of it. You may not assign or transfer these terms without our consent; we may assign them, for example as part of a merger, acquisition, or sale of assets, with notice to you.
 
 ## 16. Changes and contact
 
-We may update these terms as the product develops; the "Last updated" date above will change accordingly. Questions can be sent to legal@minibrief.ai.
+We may update these terms as the product develops; the "Last updated" date above will change accordingly. Questions can be sent to legal@minibrief.app.
 
-© 2026 MiniBrief.ai · Private by design.
+© 2026 MiniBriefAI · Private by design.

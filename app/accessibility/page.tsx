@@ -48,7 +48,7 @@ export default function AccessibilityPage() {
         <h2>Giving feedback</h2>
         <p>
           If you run into an accessibility barrier on this site, please email{" "}
-          <a href="mailto:accessibility@minibrief.ai">accessibility@minibrief.ai</a>{" "}
+          <a href="mailto:accessibility@minibrief.app">accessibility@minibrief.app</a>{" "}
           with the page and a short description of the problem. We treat
           accessibility issues as priority fixes and will respond as quickly as
           we can.

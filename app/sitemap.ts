@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.ai";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }> = [
