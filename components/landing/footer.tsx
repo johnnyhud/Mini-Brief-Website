@@ -18,10 +18,7 @@ export function Footer() {
             Legal
           </span>
           <Link href="/privacy" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-            Privacy Policy
-          </Link>
-          <Link href="/terms" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
-            Terms of Service
+            Terms &amp; Privacy
           </Link>
           <Link href="/security" className="font-body text-[13px] text-fg-2 hover:text-white transition-colors">
             Security

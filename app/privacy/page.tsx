@@ -17,6 +17,7 @@ export default function PrivacyPage() {
           is not collected. It covers two separate things: <strong>this
           website</strong> (the waitlist) and <strong>the MiniBrief browser
           extension</strong> (the product). They are deliberately kept apart.
+          See also our <a href="/terms">Terms of Service</a>.
         </p>
       </section>
 
