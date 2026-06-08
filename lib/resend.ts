@@ -10,8 +10,17 @@ export function getResend(): Resend | null {
   return cached;
 }
 
+// Accepts either `email@example.com` or `Name <email@example.com>` — the only
+// two formats Resend allows for `from`. Anything else (a bare display name, a
+// stray space/newline, a missing bracket) is rejected by Resend with a 422, so
+// we validate and fall back to the known-good default rather than trust the env.
+const FROM_RE =
+  /^(?:[^\s@]+@[^\s@]+\.[^\s@]+|.+<[^\s@]+@[^\s@]+\.[^\s@]+>)$/;
+const DEFAULT_FROM = "Mini Brief <hello@minibrief.app>";
+
 export function buildConfirmationEmail(toEmail: string) {
-  const from = process.env.RESEND_FROM_EMAIL ?? "Mini Brief <hello@minibrief.app>";
+  const envFrom = process.env.RESEND_FROM_EMAIL?.trim();
+  const from = envFrom && FROM_RE.test(envFrom) ? envFrom : DEFAULT_FROM;
   const subject = "You're on the Mini Brief list";
   const html = `
     <!doctype html>

@@ -94,13 +94,20 @@ export async function POST(req: Request) {
     }
 
     // Only send the confirmation email for brand-new signups.
+    // Resend's SDK returns { data, error } and does NOT throw on API
+    // rejection, so we must inspect `error` — not just catch exceptions.
     if (isNew) {
       const resend = getResend();
       if (resend) {
         try {
-          await resend.emails.send(buildConfirmationEmail(email));
+          const { error: sendError } = await resend.emails.send(
+            buildConfirmationEmail(email),
+          );
+          if (sendError) {
+            console.error("[subscribe] resend send failed", sendError);
+          }
         } catch (err) {
-          console.error("[subscribe] resend send failed", err);
+          console.error("[subscribe] resend send threw", err);
         }
       }
     }
