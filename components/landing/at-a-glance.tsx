@@ -32,9 +32,9 @@ type Stat = {
 
 const STATS: Stat[] = [
   {
-    value: 2,
+    value: 1,
     suffix: "",
-    label: "Inboxes supported — Gmail and Outlook",
+    label: "Inbox supported today — Outlook coming soon",
     icon: (
       <svg {...iconProps}>
         <rect width="20" height="16" x="2" y="4" rx="2" />
@@ -91,16 +91,37 @@ export function AtAGlance() {
             Built for Gmail and Outlook
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {["Gmail", "Outlook"].map((name) => (
+            {[
+              { name: "Gmail", status: "Available now", live: true },
+              { name: "Outlook", status: "Coming soon", live: false },
+            ].map(({ name, status, live }) => (
               <div
                 key={name}
-                className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.10] bg-white/[0.03] px-4 py-2 transition-colors duration-300 hover:border-accent-b/30"
+                className={`inline-flex items-center gap-2.5 rounded-full border px-4 py-2 transition-colors duration-300 ${
+                  live
+                    ? "border-white/[0.10] bg-white/[0.03] hover:border-accent-b/30"
+                    : "border-dashed border-white/[0.08] bg-white/[0.015]"
+                }`}
               >
-                <span className="text-accent-b/80">
+                <span className={live ? "text-accent-b/80" : "text-fg-3"}>
                   <MailGlyph />
                 </span>
-                <span className="font-display text-[14px] font-semibold text-white">{name}</span>
-                <span className="font-body text-[11px] font-medium text-fg-3">Available now</span>
+                <span
+                  className={`font-display text-[14px] font-semibold ${
+                    live ? "text-white" : "text-fg-2"
+                  }`}
+                >
+                  {name}
+                </span>
+                <span
+                  className={`font-body text-[11px] font-medium ${
+                    live
+                      ? "text-fg-3"
+                      : "rounded-full bg-accent-dim px-2 py-0.5 text-accent-b/80"
+                  }`}
+                >
+                  {status}
+                </span>
               </div>
             ))}
           </div>

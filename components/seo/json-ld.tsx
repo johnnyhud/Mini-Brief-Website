@@ -74,7 +74,7 @@ const FAQ_ENTRIES: Array<{ q: string; a: string }> = [
   },
   {
     q: "Which inboxes does it support?",
-    a: "Gmail and Outlook today. The panel runs inside your existing webmail — there is no separate app to open.",
+    a: "Gmail today, with Outlook coming soon. The panel runs inside your existing webmail — there is no separate app to open.",
   },
   {
     q: "Do I need to bring my own AI key?",
