@@ -58,10 +58,13 @@ export function VideoProvider({ children }: { children: React.ReactNode }) {
               // Keyed so the element is recreated each open (resets playback).
               <video
                 key={isOpen ? "open" : "closed"}
+                // React doesn't reliably set `muted` via the attribute, so force it on the element.
+                ref={(el) => { if (el) el.muted = true; }}
                 className="absolute inset-0 h-full w-full"
                 src={VIDEO_SRC}
                 poster={POSTER_SRC}
                 controls
+                muted
                 playsInline
                 preload="metadata"
                 onError={() => setErrored(true)}
