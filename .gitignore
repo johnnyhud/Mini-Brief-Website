@@ -17,3 +17,6 @@ New User Sign-Ups.xlsx
 
 # Stray archives
 *.zip
+
+# Large source video — served from Vercel Blob, not the repo
+public/video/Minibrief.app_Main_Video.mp4
