@@ -51,7 +51,7 @@ export function LegalShell({ title, updated, children }: Props) {
 
             <p className="font-body text-[13px] text-fg-3 leading-relaxed mt-12 pt-6 border-t border-white/[0.06]">
               This document is written in plain language for transparency. It is
-              not legal advice and is being finalized ahead of launch. Questions?
+              not legal advice. Questions?
               Email{" "}
               <a href="mailto:privacy@minibrief.app" className="text-accent-b hover:underline">
                 privacy@minibrief.app

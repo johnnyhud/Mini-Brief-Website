@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalShell title="Privacy Policy" updated="June 3, 2026">
+    <LegalShell title="Privacy Policy" updated="June 12, 2026">
       <section>
         <p>
           MiniBrief is built so that we hold as little of your data as
@@ -66,13 +66,14 @@ export default function PrivacyPage() {
         <ul>
           <li><strong>Reading your messages</strong> — to display them and generate summaries, triage, and drafts.</li>
           <li><strong>Modifying your messages</strong> (applying or removing labels, archiving, and changing read/unread state) — to carry out the triage actions you take from the side panel.</li>
-          <li><strong>Basic mailbox settings</strong> — to read the settings needed to display and organize your inbox correctly.</li>
+          <li><strong>Sending email on your behalf</strong> — to send the replies you draft and approve from the side panel.</li>
+          <li><strong>Mailbox settings and filters</strong> — to create and manage Gmail filters that block unwanted senders (auto-trashing their future mail), and to read the settings needed to display and organize your inbox.</li>
           <li><strong>Calendar (read-only)</strong> — to build meeting prep.</li>
         </ul>
         <p>
           For Outlook we use the equivalent Microsoft Graph permissions. You can
           review and revoke this access at any time — for Google at{" "}
-          <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>,
+          <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">myaccount.google.com/connections</a>,
           and for Microsoft in your account settings.
         </p>
 
