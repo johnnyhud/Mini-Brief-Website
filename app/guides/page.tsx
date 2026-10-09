@@ -5,13 +5,14 @@ import { Footer } from "@/components/landing/footer";
 import { Logo } from "@/components/landing/logo";
 import { Section } from "@/components/landing/section";
 import { TextLink } from "@/components/landing/link";
+import { pageMetadata } from "@/lib/seo";
 import { siteGuides } from "@/lib/site-guides";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Guides — MiniBrief",
   description: "Guides from MiniBrief.",
-  alternates: { canonical: "/guides" },
-};
+  path: "/guides",
+});
 
 export default function GuidesPage() {
   if (siteGuides.length === 0) notFound();

@@ -18,6 +18,7 @@ export function SiteJsonLd() {
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     name: WORDMARK,
     url: siteUrl,
     logo: `${siteUrl}/photos/MiniBrief-Icon-Mono-Ink.png`,
@@ -37,6 +38,21 @@ export function SiteJsonLd() {
       <JsonLd data={website} />
     </>
   );
+}
+
+/** SoftwareApplication schema for the home page. Deliberately no offers, price or ratings. */
+export function SoftwareApplicationJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: WORDMARK,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: siteUrl,
+    description: metadata.description,
+    publisher: { "@id": `${siteUrl}/#organization` },
+  };
+  return <JsonLd data={data} />;
 }
 
 /** FAQ schema, from the same array the FAQ section renders. Plain text only. */

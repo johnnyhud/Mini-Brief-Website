@@ -5,12 +5,13 @@ import { Logo } from "@/components/landing/logo";
 import { Section } from "@/components/landing/section";
 import { TextLink } from "@/components/landing/link";
 import { why, whyMetadata } from "@/content/why";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: whyMetadata.title,
   description: whyMetadata.description,
-  alternates: { canonical: "/why-minibrief" },
-};
+  path: "/why-minibrief",
+});
 
 export default function WhyMiniBriefPage() {
   return (
