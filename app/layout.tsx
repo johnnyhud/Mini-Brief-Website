@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { SiteJsonLd } from "@/components/seo/json-ld";
 import { metadata as home } from "@/content/home";
@@ -7,12 +7,11 @@ import { WORDMARK } from "@/lib/brand";
 import { siteUrl } from "@/lib/seo";
 import "./globals.css";
 
-// Inter, vendored at app/fonts (SIL OFL 1.1): the one typeface on the site.
-// globals.css points --font-body, --font-display and --font-mono at it, so
-// the kept dark pages need no restyle.
-const inter = localFont({
-  src: "./fonts/InterVariable.woff2",
-  weight: "100 900",
+// Inter, self-hosted by next/font at build (latin subset, size-adjusted
+// fallback): the one typeface on the site. globals.css points --font-body,
+// --font-display and --font-mono at it, so the kept dark pages need no restyle.
+const inter = Inter({
+  subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
