@@ -10,6 +10,7 @@ import { Privacy } from "@/components/landing/privacy";
 import { Problem } from "@/components/landing/problem";
 import { Security } from "@/components/landing/security";
 import { WhatItDoes } from "@/components/landing/what-it-does";
+import { WhoItsFor } from "@/components/landing/who-its-for";
 import { FaqJsonLd } from "@/components/seo/json-ld";
 
 export default function HomePage() {
@@ -24,6 +25,7 @@ export default function HomePage() {
         <Hero />
         <DemoVideo className="mx-auto max-w-6xl px-6 pb-16 md:pb-24" />
         <Problem />
+        <WhoItsFor />
         <WhatItDoes />
         <HowItWorks />
         <Privacy />

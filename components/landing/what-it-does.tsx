@@ -6,6 +6,7 @@ import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { whatItDoes } from "@/content/home";
 import { shots } from "@/content/shots";
 import { cn } from "@/lib/utils";
+import { InlineCta } from "./inline-cta";
 import { Section } from "./section";
 
 const featureBenefits = [
@@ -150,6 +151,7 @@ export function WhatItDoes() {
         <p className="max-w-4xl text-sm leading-relaxed text-[#475569]">
           {whatItDoes.closing}
         </p>
+        <InlineCta />
       </div>
     </Section>
   );

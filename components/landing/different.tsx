@@ -1,4 +1,5 @@
 import { different } from "@/content/home";
+import { InlineCta } from "./inline-cta";
 import { Container } from "./section";
 
 const principles = [
@@ -73,6 +74,7 @@ export function Different() {
             </li>
           ))}
         </ul>
+        <InlineCta className="mt-10" />
       </Container>
     </section>
   );
