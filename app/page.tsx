@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { metadata as home } from "@/content/home";
 import { CtaSection } from "@/components/landing/cta-section";
 import { Different } from "@/components/landing/different";
 import { DemoVideo } from "@/components/landing/demo-video";
@@ -12,6 +14,12 @@ import { Security } from "@/components/landing/security";
 import { WhatItDoes } from "@/components/landing/what-it-does";
 import { WhoItsFor } from "@/components/landing/who-its-for";
 import { FaqJsonLd } from "@/components/seo/json-ld";
+
+export const metadata: Metadata = {
+  title: home.title,
+  description: home.description,
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

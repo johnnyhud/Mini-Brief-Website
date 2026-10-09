@@ -4,10 +4,16 @@ import {
   Check,
   ShieldCheck,
 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { hero } from "@/content/home";
 import { ProviderLogo } from "@/components/provider-logo";
 import { Container } from "./section";
-import { InteractiveDemo } from "./interactive-demo";
+
+// Code-split the demo's client bundle off the critical path. It still renders
+// on the server, so the markup (and layout) is identical.
+const InteractiveDemo = dynamic(() =>
+  import("./interactive-demo").then((m) => m.InteractiveDemo),
+);
 
 export function Hero() {
   return (

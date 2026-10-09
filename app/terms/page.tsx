@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Terms of Service — MiniBrief",
   description:
     "The terms for using the MiniBrief website and the MiniBrief web app.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
