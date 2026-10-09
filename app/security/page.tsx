@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/legal-shell";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Security — MiniBrief",
   description:
     "How MiniBrief is built: what our server reads and keeps, what reaches the AI, how mailbox access is sealed, the protection built into your inbox, and how to report a vulnerability.",
-  alternates: { canonical: "/security" },
-};
+  path: "/security",
+});
 
 // Every statement here is drawn from the product's privacy policy (September
-// 2026), its security plan (S0–S4 shipped 2026-09-22), and the CASA evidence
-// pack for cloud.minibrief.app (assessment status, publisher verification,
-// per-provider DPA status, breach-notice window). Keep it that way: this page
-// is read by people who check.
+// 2026) and its security plan (S0–S4 shipped 2026-09-22). List shipped
+// protections only, with no status claims. Keep it that way: this page is
+// read by people who check.
 export default function SecurityPage() {
   return (
     <LegalShell title="Security" updated="September 23, 2026">
@@ -40,14 +40,7 @@ export default function SecurityPage() {
       </section>
 
       <section>
-        <h2>Independent assessment</h2>
-        <p>
-          Two things here matter more than anything we say about ourselves.
-        </p>
-        <ul>
-          <li><strong>Google verification is in progress.</strong> Because MiniBrief requests restricted Gmail scopes, Google requires an independent security assessment under the Cloud Application Security Assessment (CASA) framework, carried out by an accredited third-party lab rather than by us. Our web application is in that assessment now, and no Letter of Validation has been issued yet. We would rather state the stage we are at than imply more than is true; this page changes when it completes.</li>
-          <li><strong>Microsoft publisher verification is complete.</strong> Our Microsoft application registration has been through publisher verification, which is what lets your administrator see a named, verified publisher on the consent screen instead of an unknown developer.</li>
-        </ul>
+        <h2>Connecting Microsoft 365</h2>
         <p>
           On Microsoft 365, connecting MiniBrief usually needs a one-time approval from
           your administrator. That is a Microsoft tenant policy covering the mail and
@@ -242,8 +235,7 @@ export default function SecurityPage() {
         </p>
         <ul>
           <li>No SOC 2 report of our own. We rely on our providers&rsquo; certifications, not on one we hold.</li>
-          <li>No published penetration test. The CASA assessment described above includes security testing of the web application, and that is the independent review we can point to.</li>
-          <li>The CASA Letter of Validation has not been issued yet.</li>
+          <li>No published penetration test.</li>
           <li>Data processing agreements with the two providers added when the web app launched, our host and the worker&rsquo;s host, are being confirmed and recorded.</li>
           <li>The mailbox audit reads Gmail today. Outlook inbox rules need a further Microsoft permission and are not covered yet.</li>
           <li>We are not a mail gateway, we do not detonate attachments in a sandbox, and we are not watching your inbox in real time. MiniBrief sees mail after delivery, on the schedule described above.</li>

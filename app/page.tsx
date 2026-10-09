@@ -13,13 +13,14 @@ import { Problem } from "@/components/landing/problem";
 import { Security } from "@/components/landing/security";
 import { WhatItDoes } from "@/components/landing/what-it-does";
 import { WhoItsFor } from "@/components/landing/who-its-for";
-import { FaqJsonLd } from "@/components/seo/json-ld";
+import { FaqJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/json-ld";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: home.title,
   description: home.description,
-  alternates: { canonical: "/" },
-};
+  path: "/",
+});
 
 export default function HomePage() {
   return (
@@ -28,6 +29,7 @@ export default function HomePage() {
       className="flex min-h-screen flex-col bg-white text-brand-ink"
     >
       <FaqJsonLd />
+      <SoftwareApplicationJsonLd />
       <Nav />
       <main id="main" className="flex-1">
         <Hero />

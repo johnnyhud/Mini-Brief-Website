@@ -8,6 +8,7 @@ import { GuideFaqJsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
 import { hero } from "@/content/home";
 import type { GuideBlock } from "@/lib/guides";
+import { pageMetadata } from "@/lib/seo";
 import { getSiteGuide, siteGuides } from "@/lib/site-guides";
 
 type Params = { slug: string };
@@ -23,11 +24,11 @@ export function generateStaticParams(): Params[] {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const guide = getSiteGuide((await params).slug);
   if (!guide) return {};
-  return {
+  return pageMetadata({
     title: `${guide.title} — MiniBrief`,
     description: guide.description,
-    alternates: { canonical: `/guides/${guide.slug}` },
-  };
+    path: `/guides/${guide.slug}`,
+  });
 }
 
 function Block({ block }: { block: GuideBlock }) {

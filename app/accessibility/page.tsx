@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/legal-shell";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Accessibility — MiniBrief",
   description:
     "MiniBrief's commitment to building an accessible website and product.",
-  alternates: { canonical: "/accessibility" },
-};
+  path: "/accessibility",
+});
 
 export default function AccessibilityPage() {
   return (

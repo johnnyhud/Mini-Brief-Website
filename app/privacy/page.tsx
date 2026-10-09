@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/legal-shell";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy — MiniBrief",
   description:
     "What MiniBrief holds about you and your mailbox, why, for how long, who else touches it, and what you can do about it. Message bodies are not stored; metadata is kept for a rolling 90 days.",
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
 // The text below is the product's own privacy policy (PRIVACY.md in the
 // product repository, September 2026), published here unchanged apart from
