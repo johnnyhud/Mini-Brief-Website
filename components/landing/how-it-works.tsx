@@ -1,7 +1,6 @@
 import { ArrowUpRight, Link2, ListChecks, UserRound } from "lucide-react";
 import { howItWorks } from "@/content/home";
 import { PORTAL_GET_STARTED_URL } from "@/lib/portal";
-import { InlineCta } from "./inline-cta";
 import { Section } from "./section";
 
 const stepIcons = [UserRound, Link2, ListChecks];
@@ -59,7 +58,6 @@ export function HowItWorks() {
           );
         })}
       </ol>
-      <InlineCta className="mt-12" />
     </Section>
   );
 }

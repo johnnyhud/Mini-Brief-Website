@@ -25,6 +25,10 @@ export const hero = {
   secondary: { label: "Try the interactive demo", href: "#interactive-demo" },
 } as const;
 
+export const inlineCta = {
+  label: "Get started",
+} as const;
+
 export const whoItsFor = {
   eyebrow: "Who it's for",
   h2: "Made for work that runs on email.",
