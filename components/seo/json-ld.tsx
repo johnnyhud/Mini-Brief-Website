@@ -39,16 +39,24 @@ export function SiteJsonLd() {
   );
 }
 
-/** FAQ schema, from the same array the FAQ section renders. Plain text only. */
-export function FaqJsonLd() {
-  const data = {
+function faqPage(items: ReadonlyArray<{ q: string; a: string }>) {
+  return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faq.items.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-  return <JsonLd data={data} />;
+}
+
+/** FAQ schema, from the same array the FAQ section renders. Plain text only. */
+export function FaqJsonLd() {
+  return <JsonLd data={faqPage(faq.items)} />;
+}
+
+/** FAQ schema for a guide, from the same entries the article renders. Plain text only. */
+export function GuideFaqJsonLd({ items }: { items: ReadonlyArray<{ q: string; a: string }> }) {
+  return <JsonLd data={faqPage(items)} />;
 }

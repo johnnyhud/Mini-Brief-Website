@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { guides } from "../content/guides/index.ts";
 import { getGuide, listGuides, type Guide } from "./guides.ts";
 
 // Test-only fixtures. Never put these in content/guides.
@@ -39,4 +40,43 @@ test("bad slugs, dates, empty bodies and duplicates are rejected", () => {
   assert.throws(() => listGuides([{ ...fixture, date: "Jan 2" }]));
   assert.throws(() => listGuides([{ ...fixture, body: [] }]));
   assert.throws(() => listGuides([fixture, fixture]));
+});
+
+test("faq must have 2 to 4 entries with no empty q or a", () => {
+  const ok = [
+    { q: "Q1?", a: "A1." },
+    { q: "Q2?", a: "A2." },
+  ];
+  assert.equal(listGuides([{ ...fixture, faq: ok }])[0].faq?.length, 2);
+  assert.doesNotThrow(() => listGuides([fixture]));
+  assert.throws(() => listGuides([{ ...fixture, faq: [ok[0]] }]));
+  assert.throws(() => listGuides([{ ...fixture, faq: [...ok, ...ok, ok[0]] }]));
+  assert.throws(() => listGuides([{ ...fixture, faq: [{ q: " ", a: "A." }, ok[1]] }]));
+  assert.throws(() => listGuides([{ ...fixture, faq: [ok[0], { q: "Q?", a: "" }] }]));
+});
+
+const SLUGS = [
+  "one-daily-brief-for-gmail-and-outlook",
+  "see-what-you-promised-in-email",
+  "spot-phishing-in-gmail-and-outlook",
+];
+
+test("the registry has exactly the 3 launch guides, all valid, each with a FAQ", () => {
+  const listed = listGuides(guides);
+  assert.deepEqual(listed.map((g) => g.slug).sort(), SLUGS);
+  for (const guide of listed) assert.ok(guide.faq && guide.faq.length >= 2, guide.slug);
+});
+
+test("guide text has no banned words and no storage claim beyond the site's wording", () => {
+  const banned = ["$", "free", "price", "trial", "verified", "verification", "casa", "shared inbox", "meeting prep"];
+  const allowed = "Message bodies are not stored on our servers.";
+  for (const guide of listGuides(guides)) {
+    const parts = [guide.title, guide.description];
+    for (const block of guide.body) parts.push(...("items" in block ? block.items : [block.text]));
+    for (const item of guide.faq ?? []) parts.push(item.q, item.a);
+    const text = parts.join("\n").toLowerCase();
+    for (const word of banned) assert.ok(!text.includes(word), `${guide.slug}: "${word}"`);
+    const rest = text.split(allowed.toLowerCase()).join("");
+    assert.ok(!rest.includes("stor"), `${guide.slug}: "stor" outside the allowed sentence`);
+  }
 });
