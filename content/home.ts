@@ -25,6 +25,29 @@ export const hero = {
   secondary: { label: "Try the interactive demo", href: "#interactive-demo" },
 } as const;
 
+export const inlineCta = {
+  label: "Get started",
+} as const;
+
+export const whoItsFor = {
+  eyebrow: "Who it's for",
+  h2: "Made for work that runs on email.",
+  cards: [
+    {
+      title: "Small professional-services teams",
+      body: "Client email is the work. Your morning Brief shows what needs a reply, and the Promise Ledger keeps what you told each client you'd do in view.",
+    },
+    {
+      title: "Brokers",
+      body: "Sender Guard checks each message for risk, including look-alike domains, so you can act on a request with more confidence, and the Promise Ledger keeps follow-ups from slipping.",
+    },
+    {
+      title: "Agencies",
+      body: "Bring Gmail and Outlook into one brief, get replies drafted for you to review, and keep every client promise in view.",
+    },
+  ],
+} as const;
+
 export const whatItDoes = {
   eyebrow: "What it does",
   h2: "One place to move your day forward.",

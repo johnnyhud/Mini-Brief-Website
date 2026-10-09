@@ -22,6 +22,7 @@ import {
 import { security } from "@/content/home";
 import { cn } from "@/lib/utils";
 import { TextLink } from "./link";
+import { InlineCta } from "./inline-cta";
 import { Section } from "./section";
 import { SectionHeader } from "./section-header";
 
@@ -160,6 +161,7 @@ export function Security() {
           {security.link.label}
         </TextLink>
       </p>
+      <InlineCta className="mt-4" />
     </Section>
   );
 }
