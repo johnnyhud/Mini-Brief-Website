@@ -10,11 +10,11 @@ export function DemoVideo({ className }: { className?: string }) {
   return (
     <div className={className}>
       <video
-        autoPlay
+        controls
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         poster={demoVideo.poster}
         aria-label="MiniBrief demo"
         className="h-auto w-full rounded-xl border border-brand-muted/50 bg-brand-page"

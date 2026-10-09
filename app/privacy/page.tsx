@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy — MiniBrief",
   description:
     "What MiniBrief holds about you and your mailbox, why, for how long, who else touches it, and what you can do about it. Message bodies are not stored; metadata is kept for a rolling 90 days.",
+  alternates: { canonical: "/privacy" },
 };
 
 // The text below is the product's own privacy policy (PRIVACY.md in the

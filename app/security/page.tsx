@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Security — MiniBrief",
   description:
     "How MiniBrief is built: what our server reads and keeps, what reaches the AI, how mailbox access is sealed, the protection built into your inbox, and how to report a vulnerability.",
+  alternates: { canonical: "/security" },
 };
 
 // Every statement here is drawn from the product's privacy policy (September

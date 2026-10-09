@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Accessibility — MiniBrief",
   description:
     "MiniBrief's commitment to building an accessible website and product.",
+  alternates: { canonical: "/accessibility" },
 };
 
 export default function AccessibilityPage() {

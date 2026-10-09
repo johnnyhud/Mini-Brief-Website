@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { siteGuides } from "@/lib/site-guides";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.app";
 
@@ -12,9 +13,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/accessibility", priority: 0.4, changeFrequency: "yearly" },
   ];
 
-  return routes.map(({ path, priority, changeFrequency }) => ({
+  const pages = routes.map(({ path, priority, changeFrequency }) => ({
     url: `${siteUrl}${path}`,
     changeFrequency,
     priority,
   }));
+
+  // Guides join the sitemap only once at least one exists.
+  if (siteGuides.length === 0) return pages;
+  return [
+    ...pages,
+    { url: `${siteUrl}/guides`, changeFrequency: "weekly", priority: 0.6 },
+    ...siteGuides.map((guide) => ({
+      url: `${siteUrl}/guides/${guide.slug}`,
+      lastModified: guide.date,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+  ];
 }
