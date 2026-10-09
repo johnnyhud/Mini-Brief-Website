@@ -5,9 +5,12 @@ import { toast } from "sonner";
 import { Loader2, LogOut, RefreshCw, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ActivationFunnel } from "@/lib/activation-funnel";
 import { getSupabaseBrowser } from "@/lib/supabase-browser";
 import {
   adminApi,
+  getActivationFunnel,
+  type ActivationFunnelRow,
   type AdminAccountRow,
   type AuditRow,
   type Overview,
@@ -359,6 +362,8 @@ function Dashboard({
         )}
       </div>
 
+      <FunnelSection />
+
       {/* Audit log */}
       <div className="mt-10">
         <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-fg-3">
@@ -386,6 +391,119 @@ function Dashboard({
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function FunnelSection() {
+  const [range, setRange] = useState(() => ActivationFunnel.defaultRange());
+  const [rows, setRows] = useState<ActivationFunnelRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [denied, setDenied] = useState(false);
+
+  const load = useCallback(async (from: string, to: string) => {
+    setLoading(true);
+    setDenied(false);
+    try {
+      setRows(await getActivationFunnel(from, to));
+    } catch (e) {
+      if ((e as Error).message === "forbidden") setDenied(true);
+      else toast.error((e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const d = ActivationFunnel.defaultRange();
+    void load(d.from, d.to);
+  }, [load]);
+
+  const totals = ActivationFunnel.totals(rows);
+
+  return (
+    <div className="mt-10">
+      <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-fg-3">
+        Activation funnel
+      </h2>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          void load(range.from, range.to);
+        }}
+        className="mt-3 flex flex-wrap gap-2"
+      >
+        <Input
+          type="date"
+          value={range.from}
+          onChange={(e) => setRange({ ...range, from: e.target.value })}
+          className="w-auto"
+          aria-label="From"
+        />
+        <Input
+          type="date"
+          value={range.to}
+          onChange={(e) => setRange({ ...range, to: e.target.value })}
+          className="w-auto"
+          aria-label="To"
+        />
+        <Button type="submit" size="md" disabled={loading || !range.from || !range.to}>
+          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Apply"}
+        </Button>
+      </form>
+
+      {denied ? (
+        <p className="mt-4 text-sm text-fg">
+          Not authorized to view the activation funnel.
+        </p>
+      ) : (
+        <div className="mt-4 overflow-x-auto rounded-2xl border border-border bg-white/[0.02]">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="text-left text-[10px] uppercase tracking-wider text-fg-3">
+                <th className="px-3 py-2">Day (UTC)</th>
+                {ActivationFunnel.COLUMNS.map(([label]) => (
+                  <th key={label} className="px-3 py-2 text-right">
+                    {label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="text-fg">
+              <tr className="border-t border-border font-semibold">
+                <td className="px-3 py-2">Total</td>
+                {ActivationFunnel.COLUMNS.map(([label, key]) => (
+                  <td key={label} className="px-3 py-2 text-right">
+                    {ActivationFunnel.formatCount(totals[key])}
+                  </td>
+                ))}
+              </tr>
+              {rows.map((r) => (
+                <tr key={r.signup_day} className="border-t border-border">
+                  <td className="px-3 py-2 text-fg-3">{r.signup_day}</td>
+                  {ActivationFunnel.COLUMNS.map(([label, key]) => (
+                    <td key={label} className="px-3 py-2 text-right">
+                      {ActivationFunnel.formatCount(r[key])}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+              {!loading && rows.length === 0 && (
+                <tr className="border-t border-border">
+                  <td colSpan={9} className="px-3 py-4 text-center text-fg-3">
+                    No signups in this range.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <ul className="mt-2 space-y-0.5 text-[11px] text-fg-3">
+        <li>Welcome seen is an upper bound.</li>
+        <li>Returners count AI activity only.</li>
+        <li>Returner totals cover finished days only; — means not yet available.</li>
+      </ul>
     </div>
   );
 }
