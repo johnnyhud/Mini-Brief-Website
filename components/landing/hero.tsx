@@ -24,7 +24,7 @@ export function Hero() {
       />
       <Container>
         <div className="grid items-end gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
-          <div className="landing-enter">
+          <div>
             <p className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#3A5FDC]">
               <span
                 aria-hidden="true"
@@ -41,7 +41,7 @@ export function Hero() {
               <span className="text-[#3A5FDC]">{hero.accent}</span>
             </h1>
           </div>
-          <div className="landing-enter max-w-md pb-1 lg:pb-2">
+          <div className="max-w-md pb-1 lg:pb-2">
             <p className="text-lg leading-[1.7] text-[#475569]">{hero.sub}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
