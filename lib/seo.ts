@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { WORDMARK } from "@/lib/brand";
 
+export { siteUrl, normalizeSiteUrl } from "@/lib/site-url";
+
 /**
  * Canonical, Open Graph and Twitter metadata for one page, all derived from the
  * same title, description and path so they cannot drift apart. A page-level

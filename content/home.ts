@@ -94,8 +94,8 @@ export const privacy = {
 } as const;
 
 /**
- * Every control here is documented on /security or in the CASA evidence
- * pack for cloud.minibrief.app; the source is noted per item.
+ * Every control here is documented on /security or in the evidence pack
+ * for cloud.minibrief.app; the source is noted per item.
  */
 export const security = {
   id: "security",
@@ -154,32 +154,32 @@ export const security = {
         {
           title: "The AI sees only what a feature needs.",
           body: "Both the web app and the background worker call Anthropic, scoped to the feature: a subject and short preview for sorting, and the opened message for features you use. Anthropic's terms forbid training on your data.",
-          // PRIVACY.md "AI features"; CASA 6.5.1
+          // PRIVACY.md "AI features"
         },
         {
           title: "Mailbox grants are sealed at rest.",
           body: "The OAuth grant that connects Gmail or Outlook is encrypted with AES-256-GCM before it is written, under a key that never lives in the database, and your browser never receives it.",
-          // PRIVACY.md "The permission"; CASA 4.1.3, 3.2.1
+          // PRIVACY.md "The permission"
         },
         {
           title: "Sign-in built to resist brute force.",
           body: "Passwords are at least 12 characters, checked against leaked-password lists, and stored only as bcrypt hashes by our auth provider. Two-factor authentication is a switch away. Sign-in and code entry are rate-limited.",
-          // CASA 1.1.1, 1.1.3, 1.3.4; portal MfaSection
+          // portal MfaSection
         },
         {
           title: "Short-lived access tokens.",
           body: "Access tokens expire after an hour and refresh tokens rotate; signing out revokes every session and wipes the local cache. Session cookies are HttpOnly, Secure, and SameSite.",
-          // CASA 2.2.1, 2.2.3, 2.3.1, 2.3.2, 6.6.1
+          // session and token handling
         },
         {
           title: "Every row is guarded in the database.",
           body: "Access control runs as PostgreSQL row-level security on every table, below the API, so the database itself decides what each signed-in user can see. No staff tool reads mail rows.",
-          // CASA 3.1.1; PRIVACY.md "Who can read it"
+          // PRIVACY.md "Who can read it"
         },
         {
           title: "Card details never touch us.",
           body: "Card details are entered on Stripe's own checkout page, a PCI-DSS Level 1 provider, and never reach MiniBrief.",
-          // /security "Payments"; CASA 6.5.1
+          // /security "Payments"
         },
       ],
     },
@@ -193,7 +193,7 @@ export const security = {
     "Secrets kept in a secrets store, never in the app",
     "Auto-quarantine of high-risk mail, if you switch it on",
   ],
-  // CASA 4.1.1, 2.3.2, 6.1.1, 6.7.1; security plan S1 (auto-quarantine opt-in)
+  // security plan S1 (auto-quarantine opt-in)
   link: { label: "Read the full Security page", href: "/security" },
 } as const;
 

@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { SiteJsonLd } from "@/components/seo/json-ld";
 import { metadata as home } from "@/content/home";
 import { WORDMARK } from "@/lib/brand";
+import { siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 // Inter, vendored at app/fonts (SIL OFL 1.1): the one typeface on the site.
@@ -15,8 +16,6 @@ const inter = localFont({
   display: "swap",
   variable: "--font-inter",
 });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

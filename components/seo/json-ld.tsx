@@ -1,7 +1,6 @@
 import { faq, metadata } from "@/content/home";
 import { CONTACT_EMAIL, LINKEDIN_URL, WORDMARK } from "@/lib/brand";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://minibrief.app";
+import { siteUrl } from "@/lib/seo";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
