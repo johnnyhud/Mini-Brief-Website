@@ -4,6 +4,9 @@ import { Footer } from "@/components/landing/footer";
 import { Logo } from "@/components/landing/logo";
 import { Section } from "@/components/landing/section";
 import { TextLink } from "@/components/landing/link";
+import { GuideFaqJsonLd } from "@/components/seo/json-ld";
+import { Button } from "@/components/ui/button";
+import { hero } from "@/content/home";
 import type { GuideBlock } from "@/lib/guides";
 import { pageMetadata } from "@/lib/seo";
 import { getSiteGuide, siteGuides } from "@/lib/site-guides";
@@ -80,7 +83,31 @@ export default async function GuidePage({ params }: { params: Promise<Params> })
                 <Block key={index} block={block} />
               ))}
             </div>
+            {guide.faq && (
+              <section aria-labelledby="guide-faq">
+                <h2 id="guide-faq" className="mt-10 text-2xl font-medium tracking-[-0.03em]">
+                  Questions, answered straight.
+                </h2>
+                <dl className="mt-4 space-y-6">
+                  {guide.faq.map((item) => (
+                    <div key={item.q}>
+                      <dt className="text-lg font-medium">{item.q}</dt>
+                      <dd className="mt-2 text-base leading-relaxed text-[#475569] sm:text-lg">{item.a}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            )}
+            <p className="mt-10 text-base leading-relaxed text-[#475569] sm:text-lg">
+              For what MiniBrief reads and keeps, see the <TextLink href="/security">Security page</TextLink>.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg">
+                <a href={hero.primary.href}>{hero.primary.label}</a>
+              </Button>
+            </div>
           </article>
+          {guide.faq && <GuideFaqJsonLd items={guide.faq} />}
         </Section>
       </main>
       <Footer />
