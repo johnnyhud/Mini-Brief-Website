@@ -247,6 +247,11 @@ export const faq = {
       a: "Not yet. Today MiniBrief connects the Gmail and Outlook mailboxes you sign into yourself and builds one brief across all of them; a team edition with shared mailboxes is planned.",
     },
     {
+      q: "Why not just use Gemini or Copilot?",
+      a: "They're useful assistants inside Gmail and Outlook. MiniBrief gives you one daily brief across all your mailboxes, tracks who's waiting on you, and flags risky email. Read the full comparison",
+      link: { text: "Read the full comparison", href: "/why-minibrief" },
+    },
+    {
       q: "What does it cost?",
       a: "Every account starts with a free trial. After that, one paid plan unlocks everything. Email michael@minibrief.app and we'll walk you through it.",
     },
@@ -270,6 +275,7 @@ export const footer = {
     links: [
       { label: "How it works", href: "#how-it-works" },
       { label: "FAQ", href: "#faq" },
+      { label: "Why MiniBrief", href: "/why-minibrief" },
       { label: "Sign in", href: PORTAL_SIGN_IN_URL },
       { label: "Get started", href: PORTAL_GET_STARTED_URL },
     ],
