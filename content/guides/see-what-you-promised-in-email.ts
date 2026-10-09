@@ -40,7 +40,7 @@ export const guide: Guide = {
     { type: "h2", text: "Step 2: Read the Promise Ledger" },
     {
       type: "p",
-      text: "The Promise Ledger lays your commitments out in two columns. \"I owe\" holds what you told someone you would do. \"Owed to me\" holds what someone else said they would send or do for you. Seeing both side by side makes it easy to spot a week where you are carrying much more than you are waiting on, or the reverse.",
+      text: "In Open Loops, choose the Promise Ledger layout. It lays your commitments out in two columns. \"I owe\" holds what you told someone you would do. \"Owed to me\" holds what someone else said they would send or do for you. Seeing both side by side makes it easy to spot a week where you are carrying much more than you are waiting on, or the reverse.",
     },
     {
       type: "p",

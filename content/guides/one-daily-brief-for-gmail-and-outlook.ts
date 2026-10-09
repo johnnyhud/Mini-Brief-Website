@@ -21,14 +21,14 @@ export const guide: Guide = {
       items: [
         "Create your MiniBrief account and sign in.",
         "Go to Settings and open Mailboxes.",
-        "Choose to connect Gmail and sign in with Google at Google's own consent screen.",
+        "Choose Connect Gmail and sign in with Google at Google's own consent screen.",
         "Approve access. MiniBrief asks only for what its features need.",
       ],
     },
     { type: "h2", text: "Step 2: Connect your Outlook mailbox" },
     {
       type: "p",
-      text: "Repeat the same steps and choose Outlook this time, signing in with Microsoft. If your Outlook account is a work or school account, connecting usually needs a one-time approval from your Microsoft 365 administrator. That is a Microsoft policy, and it is a one-off step.",
+      text: "Repeat the same steps and choose Connect Outlook this time, signing in with Microsoft. If your Outlook account is a work or school account, connecting usually needs a one-time approval from your Microsoft 365 administrator. That is a Microsoft policy, and it is a one-off step.",
     },
     {
       type: "p",
@@ -46,7 +46,7 @@ export const guide: Guide = {
     { type: "h2", text: "Step 4: Get the daily brief by email" },
     {
       type: "p",
-      text: "You do not have to open MiniBrief first to see your brief. You can switch on the daily brief email, so the brief is waiting in your inbox in the morning. Read it over coffee, then open MiniBrief when something needs action.",
+      text: "You do not have to open MiniBrief first to see your brief. You can switch on Morning briefing by email under Settings, in Notifications, so the brief is waiting in your inbox in the morning. Read it over coffee, then open MiniBrief when something needs action.",
     },
     { type: "h2", text: "Step 5: Ask Your Inbox" },
     {
@@ -97,7 +97,7 @@ export const guide: Guide = {
     },
     {
       q: "Can the brief come to me by email?",
-      a: "Yes. You can switch on the daily brief email, so the brief is waiting in your inbox.",
+      a: "Yes. Switch on Morning briefing by email under Settings, in Notifications, so the brief is waiting in your inbox.",
     },
   ],
 };
