@@ -20,6 +20,13 @@ export interface Guide {
   /** ISO date, YYYY-MM-DD. */
   date: string;
   body: GuideBlock[];
+  /** Optional, 2 to 4 entries. Rendered at the end of the article and emitted as FAQPage JSON-LD. Plain text. */
+  faq?: GuideFaq[];
+}
+
+export interface GuideFaq {
+  q: string;
+  a: string;
 }
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -33,6 +40,14 @@ function validate(guide: Guide): void {
     throw new Error(`Guide "${guide.slug}" needs a YYYY-MM-DD date`);
   }
   if (guide.body.length === 0) throw new Error(`Guide "${guide.slug}" has an empty body`);
+  if (guide.faq) {
+    if (guide.faq.length < 2 || guide.faq.length > 4) {
+      throw new Error(`Guide "${guide.slug}" needs 2 to 4 FAQ entries`);
+    }
+    for (const item of guide.faq) {
+      if (!item.q.trim() || !item.a.trim()) throw new Error(`Guide "${guide.slug}" has an FAQ entry with an empty q or a`);
+    }
+  }
 }
 
 /** Validated guides, newest first. Throws on a bad or duplicate guide, which fails the build. */
