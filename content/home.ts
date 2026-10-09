@@ -86,7 +86,7 @@ export const privacy = {
   h2: "Message bodies are not stored on our servers.",
   lines: [
     "Our server reads the mailboxes you connect, keeps a rolling 90 days of subjects, senders and previews, and never keeps a message body.",
-    "AI requests go to one named provider, Anthropic, and are never logged or kept. Anthropic's terms forbid training on your data.",
+    "AI requests go to one named provider, Anthropic, and Anthropic's terms forbid training on your data.",
     "No analytics, no telemetry, no tracking.",
     "Disconnect a mailbox and everything read from it is deleted at once; delete your account and everything goes.",
   ],
@@ -152,8 +152,8 @@ export const security = {
           // PRIVACY.md "AI features"
         },
         {
-          title: "Nothing sent to the AI is kept.",
-          body: "Both the web app and the background worker call Anthropic, scoped to the feature. Neither the request nor the response is logged or stored, and Anthropic's terms forbid training on your data.",
+          title: "The AI sees only what a feature needs.",
+          body: "Both the web app and the background worker call Anthropic, scoped to the feature: a subject and short preview for sorting, and the opened message for features you use. Anthropic's terms forbid training on your data.",
           // PRIVACY.md "AI features"; CASA 6.5.1
         },
         {
@@ -235,7 +235,7 @@ export const faq = {
   items: [
     {
       q: "Do you store or read my email?",
-      a: "Our server reads the mailboxes you connect so your brief is ready whenever you open it. It keeps a rolling 90 days of metadata: subjects, senders, previews, dates and what MiniBrief worked out about each message. Message bodies are not stored; one is fetched from your mailbox when you open it. The AI sees a subject and a short preview per message for sorting, which runs in the background, and the message you opened for the features you use on it; nothing sent is logged or kept. The full picture is on the Security page.",
+      a: "Our server reads the mailboxes you connect so your brief is ready whenever you open it. It keeps a rolling 90 days of metadata: subjects, senders, previews, dates and what MiniBrief worked out about each message. Message bodies are not stored; one is fetched from your mailbox when you open it. The AI sees a subject and a short preview per message for sorting, which runs in the background, and the message you opened for the features you use on it; some results, like your daily Brief, are kept so you can read them back. The Privacy page lists exactly what. The full picture is on the Security page.",
       link: { text: "Security page", href: "/security" },
     },
     {
