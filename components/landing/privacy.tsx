@@ -149,8 +149,7 @@ export function Privacy() {
                   you opened, capped in length.
                 </p>
                 <p className="mt-4 border-l-2 border-[#3A5FDC]/50 pl-3 text-xs leading-relaxed text-[#475569]">
-                  One named provider. Neither AI requests nor responses are
-                  logged or stored. Anthropic&apos;s terms forbid training on
+                  One named provider. Anthropic&apos;s terms forbid training on
                   your data.
                 </p>
               </li>
