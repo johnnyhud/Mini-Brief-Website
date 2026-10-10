@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { startTransition, useId, useRef, useState, type KeyboardEvent } from "react";
 import {
   ArrowRight,
   Check,
@@ -167,7 +167,7 @@ export function InteractiveDemo() {
                 aria-selected={activeTab === id}
                 aria-controls={`${instanceId}-panel-${id}`}
                 tabIndex={activeTab === id ? 0 : -1}
-                onClick={() => setActiveTab(id)}
+                onClick={() => startTransition(() => setActiveTab(id))}
                 onKeyDown={(event) => handleTabKey(event, index)}
                 className={cn(
                   "flex min-h-10 items-center justify-center gap-1.5 rounded-lg px-2 py-2 text-[12px] font-medium transition-colors motion-reduce:transition-none sm:gap-2 sm:text-xs lg:justify-start",

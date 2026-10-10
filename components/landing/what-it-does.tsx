@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent } from "react";
+import { startTransition, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { whatItDoes } from "@/content/home";
@@ -75,7 +75,7 @@ export function WhatItDoes() {
               aria-controls="feature-panel"
               aria-selected={active === index}
               tabIndex={active === index ? 0 : -1}
-              onClick={() => setActive(index)}
+              onClick={() => startTransition(() => setActive(index))}
               onKeyDown={(event) => onKeyDown(event, index)}
               className={cn(
                 "group relative flex min-h-[72px] w-full items-center gap-4 border-b border-[#07091A]/10 px-4 py-4 text-left transition-colors duration-150 focus-visible:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3A5FDC] motion-reduce:transition-none sm:min-h-[108px] sm:py-5 lg:px-5",
