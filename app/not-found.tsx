@@ -1,10 +1,26 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/landing/logo";
+import { PORTAL_GET_STARTED_URL } from "@/lib/portal";
+
+export const metadata: Metadata = {
+  title: "Not found — MiniBrief",
+  robots: { index: false, follow: true },
+};
+
+const links = [
+  { label: "Home", href: "/" },
+  { label: "Guides", href: "/guides" },
+  { label: "Why MiniBrief", href: "/why-minibrief" },
+  { label: "Get started", href: PORTAL_GET_STARTED_URL },
+];
+
+const linkClass = "inline-flex min-h-11 items-center text-fg-2 underline underline-offset-4 hover:text-white";
 
 export default function NotFound() {
   return (
-    <main className="relative min-h-screen flex flex-col">
+    <main id="main" className="relative min-h-screen flex flex-col">
       <div className="bg-canvas" aria-hidden="true">
         <div className="orb orb-1" />
         <div className="orb orb-2" />
@@ -30,6 +46,21 @@ export default function NotFound() {
             Back to the inbox
           </Button>
         </Link>
+        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm">
+          {links.map((item) => (
+            <li key={item.label}>
+              {item.href.startsWith("/") ? (
+                <Link href={item.href} className={linkClass}>
+                  {item.label}
+                </Link>
+              ) : (
+                <a href={item.href} className={linkClass}>
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );

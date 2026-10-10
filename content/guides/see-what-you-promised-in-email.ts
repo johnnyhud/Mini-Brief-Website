@@ -117,4 +117,5 @@ export const guide: Guide = {
       a: "Yes. Done status, snooze and due dates you set sync across devices. The promise text does not.",
     },
   ],
+  related: ["open-loops-sync", "morning-brief-email"],
 };

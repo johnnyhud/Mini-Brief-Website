@@ -69,4 +69,5 @@ export const guide: Guide = {
       a: "Yes, add a company domain under Settings, in Never miss. Personal email domains such as gmail.com cannot be added as a domain, so add those addresses one by one.",
     },
   ],
+  related: ["one-daily-brief-for-gmail-and-outlook", "see-what-you-promised-in-email"],
 };

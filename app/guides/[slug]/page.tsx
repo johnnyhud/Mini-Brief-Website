@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/landing/breadcrumbs";
 import { Footer } from "@/components/landing/footer";
 import { Logo } from "@/components/landing/logo";
 import { Section } from "@/components/landing/section";
@@ -61,6 +62,7 @@ function Block({ block }: { block: GuideBlock }) {
 export default async function GuidePage({ params }: { params: Promise<Params> }) {
   const guide = getSiteGuide((await params).slug);
   if (!guide) notFound();
+  const related = (guide.related ?? []).flatMap((slug) => getSiteGuide(slug) ?? []);
   return (
     <div data-page="light" className="flex min-h-screen flex-col bg-white text-brand-ink">
       <header className="border-b border-brand-ink/[0.06]">
@@ -74,6 +76,13 @@ export default async function GuidePage({ params }: { params: Promise<Params> })
       <main id="main" className="flex-1">
         <Section>
           <article className="max-w-3xl">
+            <Breadcrumbs
+              items={[
+                { name: "Home", path: "/" },
+                { name: "Guides", path: "/guides" },
+                { name: guide.title, path: `/guides/${guide.slug}` },
+              ]}
+            />
             <h1 className="text-4xl font-medium leading-[1.08] tracking-[-0.045em] md:text-5xl">{guide.title}</h1>
             <p className="mt-4 text-sm text-[#475569]">
               <time dateTime={guide.date}>{guide.date}</time>
@@ -96,6 +105,20 @@ export default async function GuidePage({ params }: { params: Promise<Params> })
                     </div>
                   ))}
                 </dl>
+              </section>
+            )}
+            {related.length > 0 && (
+              <section aria-labelledby="guide-related">
+                <h2 id="guide-related" className="mt-10 text-2xl font-medium tracking-[-0.03em]">
+                  Related guides
+                </h2>
+                <ul className="mt-4 space-y-2 text-base sm:text-lg">
+                  {related.map((item) => (
+                    <li key={item.slug}>
+                      <TextLink href={`/guides/${item.slug}`}>{item.title}</TextLink>
+                    </li>
+                  ))}
+                </ul>
               </section>
             )}
             <p className="mt-10 text-base leading-relaxed text-[#475569] sm:text-lg">

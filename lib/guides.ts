@@ -22,6 +22,8 @@ export interface Guide {
   body: GuideBlock[];
   /** Optional, 2 to 4 entries. Rendered at the end of the article and emitted as FAQPage JSON-LD. Plain text. */
   faq?: GuideFaq[];
+  /** Optional, 2 to 3 slugs of other guides. Rendered as "Related guides". */
+  related?: string[];
 }
 
 export interface GuideFaq {

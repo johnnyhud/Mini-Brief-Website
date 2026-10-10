@@ -105,4 +105,5 @@ export const guide: Guide = {
       a: "One click attempts the sender's one-click unsubscribe and creates a real filter in your mailbox that trashes their future mail. You can undo it under Settings, in Blocked senders.",
     },
   ],
+  related: ["one-daily-brief-for-gmail-and-outlook", "morning-brief-email"],
 };

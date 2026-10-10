@@ -70,6 +70,20 @@ test("the registry has exactly the 6 guides, all valid, each with a FAQ", () => 
   for (const guide of listed) assert.ok(guide.faq && guide.faq.length >= 2, guide.slug);
 });
 
+test("related guides exist, never point to themselves, and number 2 to 3 per guide", () => {
+  const listed = listGuides(guides);
+  const slugs = new Set(listed.map((g) => g.slug));
+  for (const guide of listed) {
+    const related = guide.related ?? [];
+    assert.ok(related.length >= 2 && related.length <= 3, `${guide.slug}: needs 2 to 3 related guides`);
+    assert.equal(new Set(related).size, related.length, `${guide.slug}: duplicate related slug`);
+    for (const slug of related) {
+      assert.ok(slugs.has(slug), `${guide.slug}: related "${slug}" does not exist`);
+      assert.notEqual(slug, guide.slug, `${guide.slug}: related points to itself`);
+    }
+  }
+});
+
 test("guide text has no banned words and no storage claim beyond the site's wording", () => {
   const banned = ["$", "free", "price", "trial", "verified", "verification", "casa", "shared inbox", "meeting prep"];
   const allowed = "Message bodies are not stored on our servers.";

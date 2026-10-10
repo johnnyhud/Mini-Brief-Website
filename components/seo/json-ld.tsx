@@ -1,6 +1,6 @@
 import { faq, metadata } from "@/content/home";
 import { CONTACT_EMAIL, LINKEDIN_URL, WORDMARK } from "@/lib/brand";
-import { siteUrl } from "@/lib/seo";
+import { siteUrl } from "@/lib/site-url";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
@@ -69,6 +69,21 @@ function faqPage(items: ReadonlyArray<{ q: string; a: string }>) {
 /** FAQ schema, from the same array the FAQ section renders. Plain text only. */
 export function FaqJsonLd() {
   return <JsonLd data={faqPage(faq.items)} />;
+}
+
+/** Breadcrumb trail as BreadcrumbList. Paths are site-relative; they are made absolute here. */
+export function BreadcrumbJsonLd({ items }: { items: ReadonlyArray<{ name: string; path: string }> }) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${siteUrl}${item.path === "/" ? "" : item.path}`,
+    })),
+  };
+  return <JsonLd data={data} />;
 }
 
 /** FAQ schema for a guide, from the same entries the article renders. Plain text only. */
