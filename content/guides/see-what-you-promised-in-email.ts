@@ -44,13 +44,13 @@ export const guide: Guide = {
     },
     {
       type: "p",
-      text: "Each item in the ledger can be marked Done once it is dealt with, or snoozed if it is not the right moment. Snooze is kept on the device you are using, so a snoozed item on one computer is not snoozed on another.",
+      text: "Each item in the ledger can be marked Done once it is dealt with, or snoozed if it is not the right moment. Snooze hides an item for 3 days, and it syncs across your devices. For the details, see the guide at /guides/open-loops-sync.",
     },
     {
       type: "ul",
       items: [
         "Done: the promise has been kept, or the thing you were waiting for has arrived. It leaves the active list.",
-        "Snooze: you know about it and want it out of the way for now. It comes back later, on this device.",
+        "Snooze: you know about it and want it out of the way for now. It comes back on its own after 3 days.",
       ],
     },
     { type: "h2", text: "Step 3: Check who is waiting on your reply" },
@@ -114,7 +114,7 @@ export const guide: Guide = {
     },
     {
       q: "Is snooze shared between my devices?",
-      a: "No. Snooze applies on the device you are using.",
+      a: "Yes. Done status, snooze and due dates you set sync across devices. The promise text does not.",
     },
   ],
 };
