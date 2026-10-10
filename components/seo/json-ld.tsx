@@ -1,6 +1,7 @@
 import { faq, metadata } from "@/content/home";
 import { CONTACT_EMAIL, LINKEDIN_URL, WORDMARK } from "@/lib/brand";
-import { siteUrl } from "@/lib/site-url";
+import { faqPage } from "@/lib/faq-schema";
+import { siteUrl } from "@/lib/seo";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
@@ -52,18 +53,6 @@ export function SoftwareApplicationJsonLd() {
     publisher: { "@id": `${siteUrl}/#organization` },
   };
   return <JsonLd data={data} />;
-}
-
-function faqPage(items: ReadonlyArray<{ q: string; a: string }>) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
 }
 
 /** FAQ schema, from the same array the FAQ section renders. Plain text only. */
