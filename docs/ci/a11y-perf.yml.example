@@ -1,0 +1,34 @@
+# Proposed workflow for the A1 axe + performance checks. Copy to
+# .github/workflows/a11y-perf.yml (the Claude GitHub App cannot write to
+# .github/workflows, so this needs a human to add it). Untested.
+name: a11y-perf
+on:
+  pull_request:
+jobs:
+  a11y-perf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm start &
+      - run: npx --yes wait-on http://localhost:3000
+      # No package.json/lockfile change: tooling is installed ad hoc.
+      - run: npm i --no-save @axe-core/playwright playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-a11y.mjs
+      # W7: the real W7 thresholds weren't in the issue; 0.9 performance is a
+      # placeholder. Adjust assertions to the actual W7 bars.
+      - run: |
+          npx --yes @lhci/cli autorun \
+            --collect.url=http://localhost:3000/ \
+            --collect.url=http://localhost:3000/guides \
+            --collect.url=http://localhost:3000/how-it-works \
+            --collect.url=http://localhost:3000/why-minibrief \
+            --collect.url=http://localhost:3000/privacy \
+            --assert.assertions.categories:performance='["error",{"minScore":0.9}]'
