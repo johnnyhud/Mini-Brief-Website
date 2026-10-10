@@ -23,7 +23,7 @@ const config: Config = {
         fg: {
           DEFAULT: "#ffffff",
           2: "#8892b0",
-          3: "#4a5278",
+          3: "#7a84ab",
         },
         mini: "#6b7299",
         live: "#22d3a0",
