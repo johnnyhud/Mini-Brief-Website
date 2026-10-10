@@ -23,13 +23,40 @@ const slugsIn = (dir: string) =>
 const staticPages = ["/", "/security", "/how-it-works", "/why-minibrief", "/changelog", "/privacy", "/terms", "/accessibility", "/guides"];
 const pageFile = (route: string) => join("app", ...route.split("/").filter(Boolean), "page.tsx");
 
+// A page may take its strings from a content module (`title: home.title`,
+// imported from "@/content/home"). Follow that import and require real
+// literals in the exported object; everything else must be a literal here.
+function metadataStrings(route: string, src: string): { title?: string; description?: string } {
+  const ref = /title:\s*(\w+)\.title\b/.exec(src)?.[1];
+  if (!ref) {
+    return {
+      title: /title:\s*["'`]([^"'`]+)/.exec(src)?.[1],
+      description: /description:\s*["'`]([^"'`]+)/.exec(src)?.[1],
+    };
+  }
+  assert.match(src, new RegExp(`description:\\s*${ref}\\.description\\b`), `${route}: description does not come from ${ref}`);
+  const imp = new RegExp(`import\\s*\\{[^}]*?\\b(?:(\\w+)\\s+as\\s+)?${ref}\\b[^}]*\\}\\s*from\\s*"@/content/([\\w-]+)"`).exec(src);
+  assert.ok(imp, `${route}: ${ref} is not imported from @/content/*`);
+  const exported = imp[1] ?? ref;
+  const mod = read("content", `${imp[2]}.ts`);
+  const block = new RegExp(`export const ${exported}\\b[^=]*=\\s*\\{([\\s\\S]*?)\\}\\s*as const;`).exec(mod)?.[1];
+  assert.ok(block, `${route}: content/${imp[2]}.ts has no ${exported} object`);
+  return {
+    title: /title:\s*["'`]([^"'`]+)/.exec(block)?.[1],
+    description: /description:\s*["'`]([^"'`]+)/.exec(block)?.[1],
+  };
+}
+
 test("static pages set title, description and a matching canonical path", () => {
   for (const route of staticPages) {
     const src = read(pageFile(route));
     assert.match(src, /pageMetadata\(\{/, `${route}: no pageMetadata call`);
-    assert.match(src, /title:\s*["'`][^"'`]+/, `${route}: no title`);
-    assert.match(src, /description:\s*["'`][^"'`]+/, `${route}: no description`);
-    assert.ok(src.includes(`path: "${route}"`), `${route}: canonical path does not match route`);
+    const { title, description } = metadataStrings(route, src);
+    assert.ok(title && title.trim().length > 0, `${route}: no title`);
+    assert.ok(description && description.trim().length > 0, `${route}: no description`);
+    const pathConst = /path:\s*([A-Z_][A-Z0-9_]*)\b/.exec(src)?.[1];
+    const canonical = pathConst ? new RegExp(`const ${pathConst}\\s*=\\s*"([^"]*)"`).exec(src)?.[1] : /path:\s*"([^"]*)"/.exec(src)?.[1];
+    assert.equal(canonical, route, `${route}: canonical path does not match route`);
   }
 });
 
