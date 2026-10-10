@@ -277,6 +277,7 @@ export const footer = {
       { label: "FAQ", href: "#faq" },
       { label: "Why MiniBrief", href: "/why-minibrief" },
       { label: "Guides", href: "/guides" },
+      { label: "Changelog", href: "/changelog" },
       { label: "Sign in", href: PORTAL_SIGN_IN_URL },
       { label: "Get started", href: PORTAL_GET_STARTED_URL },
     ],
