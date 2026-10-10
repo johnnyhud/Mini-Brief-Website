@@ -28,7 +28,7 @@ export const guide: Guide = {
     { type: "h2", text: "Step 2: Connect your Outlook mailbox" },
     {
       type: "p",
-      text: "Repeat the same steps and choose Connect Outlook this time, signing in with Microsoft. If your Outlook account is a work or school account, connecting usually needs a one-time approval from your Microsoft 365 administrator. That is a Microsoft policy, and it is a one-off step.",
+      text: "Repeat the same steps and choose Connect Outlook this time, signing in with Microsoft. If your Outlook account is a work or school account, connecting usually needs a one-time approval from your Microsoft 365 administrator. That is a Microsoft policy, and it is a one-off step. For what to send your admin, see the guide at /guides/outlook-admin-approval.",
     },
     {
       type: "p",
@@ -46,7 +46,7 @@ export const guide: Guide = {
     { type: "h2", text: "Step 4: Get the daily brief by email" },
     {
       type: "p",
-      text: "You do not have to open MiniBrief first to see your brief. You can switch on Morning briefing by email under Settings, in Notifications, so the brief is waiting in your inbox in the morning. Read it over coffee, then open MiniBrief when something needs action.",
+      text: "You do not have to open MiniBrief first to see your brief. You can switch on Morning briefing by email under Settings, in Notifications, so the brief is waiting in your inbox in the morning. Read it over coffee, then open MiniBrief when something needs action. To change the hour, days or time zone, see the guide at /guides/morning-brief-email.",
     },
     { type: "h2", text: "Step 5: Ask Your Inbox" },
     {

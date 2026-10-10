@@ -56,12 +56,15 @@ test("faq must have 2 to 4 entries with no empty q or a", () => {
 });
 
 const SLUGS = [
+  "morning-brief-email",
   "one-daily-brief-for-gmail-and-outlook",
+  "open-loops-sync",
+  "outlook-admin-approval",
   "see-what-you-promised-in-email",
   "spot-phishing-in-gmail-and-outlook",
 ];
 
-test("the registry has exactly the 3 launch guides, all valid, each with a FAQ", () => {
+test("the registry has exactly the 6 guides, all valid, each with a FAQ", () => {
   const listed = listGuides(guides);
   assert.deepEqual(listed.map((g) => g.slug).sort(), SLUGS);
   for (const guide of listed) assert.ok(guide.faq && guide.faq.length >= 2, guide.slug);
