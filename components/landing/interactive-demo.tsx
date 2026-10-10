@@ -282,7 +282,7 @@ export function InteractiveDemo() {
                       className="size-3.5 text-[#969CAB]"
                     />
                   </div>
-                  <p className="text-[11px] text-[#697184] sm:text-[12px]">
+                  <p className="text-[11px] text-[#636b7e] sm:text-[12px]">
                     {label}
                   </p>
                 </div>
@@ -292,7 +292,7 @@ export function InteractiveDemo() {
               <div className="min-w-0">
                 <div className="mb-2 flex items-center justify-between">
                   <h3 className="text-xs font-semibold">Start here</h3>
-                  <span className="text-[11px] text-[#697184]">
+                  <span className="text-[11px] text-[#636b7e]">
                     Select a message
                   </span>
                 </div>
@@ -318,7 +318,7 @@ export function InteractiveDemo() {
                           "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold",
                           selected.id === thread.id
                             ? "bg-[#DDE6FF] text-brand-blue"
-                            : "bg-[#F0F1F5] text-[#697184]",
+                            : "bg-[#F0F1F5] text-[#636b7e]",
                         )}
                       >
                         {thread.initials}
@@ -328,14 +328,14 @@ export function InteractiveDemo() {
                           <span className="truncate text-[12px] font-semibold">
                             {thread.sender}
                           </span>
-                          <span className="shrink-0 text-[10px] text-[#697184]">
+                          <span className="shrink-0 text-[10px] text-[#636b7e]">
                             {thread.time}
                           </span>
                         </span>
                         <span className="mt-0.5 block truncate text-[12px] text-[#495166]">
                           {thread.subject}
                         </span>
-                        <span className="mt-1.5 flex flex-wrap items-center gap-x-1 text-[10px] font-medium text-[#697184]">
+                        <span className="mt-1.5 flex flex-wrap items-center gap-x-1 text-[10px] font-medium text-[#636b7e]">
                           <ProviderLogo
                             provider={thread.account}
                             className="size-3"
@@ -414,7 +414,7 @@ export function InteractiveDemo() {
               <div className="min-w-0">
                 <label
                   htmlFor={`${instanceId}-recipient`}
-                  className="mb-1 block text-[11px] font-medium text-[#697184]"
+                  className="mb-1 block text-[11px] font-medium text-[#636b7e]"
                 >
                   Replying to
                 </label>
@@ -434,7 +434,7 @@ export function InteractiveDemo() {
                   ))}
                 </select>
               </div>
-              <span className="text-[11px] text-[#697184]">
+              <span className="text-[11px] text-[#636b7e]">
                 {selected.subject}
               </span>
             </div>
@@ -471,7 +471,7 @@ export function InteractiveDemo() {
                         "min-h-8 rounded-md px-2.5 text-[11px] font-medium",
                         draft.tone === tone
                           ? "bg-[#EAF0FF] text-brand-blue"
-                          : "text-[#697184] hover:bg-[#F2F3F6]",
+                          : "text-[#636b7e] hover:bg-[#F2F3F6]",
                         focusRing,
                       )}
                     >
@@ -601,16 +601,16 @@ export function InteractiveDemo() {
                           className={cn(
                             "text-[10px] font-medium",
                             isComplete
-                              ? "text-[#697184]"
+                              ? "text-[#636b7e]"
                               : promise.today
                                 ? "text-[#A66024]"
-                                : "text-[#697184]",
+                                : "text-[#636b7e]",
                           )}
                         >
                           {isComplete ? "Complete" : promise.due}
                         </span>
                       </div>
-                      <p className="mt-1 flex flex-wrap items-center gap-x-1 text-[11px] text-[#697184]">
+                      <p className="mt-1 flex flex-wrap items-center gap-x-1 text-[11px] text-[#636b7e]">
                         {promise.person} ·
                         <ProviderLogo
                           provider={promise.account}
@@ -630,7 +630,7 @@ export function InteractiveDemo() {
         </div>
       </div>
       <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-brand-ink/[0.08] bg-[#FCFCFD] px-4 py-2.5 sm:px-6">
-        <p className="text-[11px] text-[#697184]">
+        <p className="text-[11px] text-[#636b7e]">
           Explore the demo. No inbox connection needed.
         </p>
         <button
