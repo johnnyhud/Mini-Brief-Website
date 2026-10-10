@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/", priority: 1, changeFrequency: "weekly" },
     { path: "/security", priority: 0.8, changeFrequency: "monthly" },
     { path: "/why-minibrief", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/changelog", priority: 0.5, changeFrequency: "weekly" },
     { path: "/privacy", priority: 0.5, changeFrequency: "monthly" },
     { path: "/terms", priority: 0.5, changeFrequency: "monthly" },
     { path: "/accessibility", priority: 0.4, changeFrequency: "yearly" },
