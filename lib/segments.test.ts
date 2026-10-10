@@ -62,7 +62,7 @@ test("the page file exists and every guide link is a real guide", () => {
 });
 
 test("the footer links every segment page", () => {
-  const hrefs = new Set(footer.whoItsFor.links.map((l) => l.href));
+  const hrefs = new Set<string>(footer.whoItsFor.links.map((l) => l.href));
   for (const segment of listSegments(segments)) assert.ok(hrefs.has(`/for/${segment.slug}`), segment.slug);
   assert.equal(hrefs.size, segments.length);
 });
