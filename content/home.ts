@@ -245,6 +245,14 @@ export const footer = {
       { label: "Get started", href: PORTAL_GET_STARTED_URL },
     ],
   },
+  whoItsFor: {
+    heading: "Who it's for",
+    links: [
+      { label: "Real estate agents", href: "/for/real-estate-agents" },
+      { label: "Agencies and consultancies", href: "/for/agencies-and-consultancies" },
+      { label: "Trades and local services", href: "/for/trades-and-local-services" },
+    ],
+  },
   legal: {
     heading: "Legal",
     links: [

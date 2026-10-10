@@ -47,7 +47,7 @@ export function Footer() {
   return (
     <footer className="overflow-hidden border-t border-brand-ink/10 bg-[#ffffff] text-[#07091A]">
       <Container className="pt-14 md:pt-16">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[1.6fr_0.8fr_0.8fr_1fr]">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[1.4fr_0.8fr_0.9fr_0.8fr_1fr]">
           <div className="col-span-2 max-w-xs lg:col-span-1">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-[#475569]">
@@ -58,6 +58,11 @@ export function Footer() {
             id="footer-product"
             title={footer.product.heading}
             links={footer.product.links}
+          />
+          <LinkColumn
+            id="footer-who"
+            title={footer.whoItsFor.heading}
+            links={footer.whoItsFor.links}
           />
           <LinkColumn
             id="footer-legal"
