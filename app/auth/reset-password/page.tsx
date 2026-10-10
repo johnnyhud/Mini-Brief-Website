@@ -214,7 +214,7 @@ export default function ResetPasswordPage() {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none transition placeholder:text-fg-3 focus:border-[#5b72ff]";
+    "w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none transition placeholder:text-fg-3 focus:border-[#5b72ff] focus-visible:ring-2 focus-visible:ring-[#5b72ff]";
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-bg px-6 font-body text-fg">

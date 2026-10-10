@@ -12,7 +12,7 @@
   --accent-glow: rgba(74, 98, 245, 0.3);
   --fg: #ffffff;
   --fg2: #8892b0;
-  --fg3: #4a5278;
+  --fg3: #7a84ab;
   --mini: #6b7299;
   --border: rgba(255, 255, 255, 0.08);
   --ba: rgba(74, 98, 245, 0.3);
@@ -2145,4 +2145,11 @@ html:has([data-page="home"]) body {
 @media (prefers-reduced-motion: reduce) {
   .landing-action:hover, .landing-action:active { transform: none; }
   .landing-enter, .landing-demo-stage { animation: none; }
+}
+
+/* Focus fallback (a11y): zero-specificity default so every interactive
+   element has a visible keyboard focus ring; component styles still win. */
+:where(a, button, input, textarea, select, summary, [tabindex="0"]):focus-visible {
+  outline: 2px solid #5b72ff;
+  outline-offset: 2px;
 }
