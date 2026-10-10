@@ -82,4 +82,5 @@ export const guide: Guide = {
       a: "Four: offline_access, User.Read, Mail.ReadWrite and Mail.Send. No other Microsoft permissions are requested.",
     },
   ],
+  related: ["one-daily-brief-for-gmail-and-outlook", "morning-brief-email"],
 };

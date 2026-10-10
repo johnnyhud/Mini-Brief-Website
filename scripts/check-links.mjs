@@ -42,6 +42,37 @@ for (const file of sources) {
 
 const hrefPattern = /(?:href[=:]\s*\{?\s*|\]\()["'`]?([^"'`)\s}]+)/g;
 const problems = [];
+
+// Orphans: every sitemap route needs an inbound internal link from some other
+// file. Sitemap routes are the static paths in app/sitemap.ts plus /guides and
+// one route per guide slug. Links are matched by literal href; a guide is also
+// linked when app/guides/page.tsx builds `/guides/${...}` links from the list.
+const sitemapText = readFileSync(join(root, "app", "sitemap.ts"), "utf8");
+const sitemapRoutes = new Set(["/guides"]);
+for (const m of sitemapText.matchAll(/path:\s*"(\/[^"]*)"/g)) sitemapRoutes.add(m[1]);
+const guideSlugs = readdirSync(join(root, "content", "guides"))
+  .filter((f) => f.endsWith(".ts") && f !== "index.ts")
+  .map((f) => /\bslug:\s*"([^"]+)"/.exec(readFileSync(join(root, "content", "guides", f), "utf8"))?.[1])
+  .filter(Boolean);
+for (const slug of guideSlugs) sitemapRoutes.add(`/guides/${slug}`);
+
+const pageFileFor = (route) => join(root, "app", ...route.split("/").filter(Boolean), "page.tsx");
+const guidesIndexText = readFileSync(join(root, "app", "guides", "page.tsx"), "utf8");
+const indexLinksGuides = guidesIndexText.includes("/guides/${");
+const inbound = new Map([...sitemapRoutes].map((r) => [r, 0]));
+for (const file of sources) {
+  const text = readFileSync(file, "utf8");
+  for (const m of text.matchAll(hrefPattern)) {
+    const target = m[1].split("#")[0].split("?")[0];
+    for (const route of sitemapRoutes) {
+      if (target === route && file !== pageFileFor(route)) inbound.set(route, inbound.get(route) + 1);
+    }
+  }
+}
+for (const [route, count] of inbound) {
+  const viaIndex = indexLinksGuides && route.startsWith("/guides/");
+  if (count === 0 && !viaIndex) problems.push(`${route}  (in the sitemap but no other page links to it)`);
+}
 for (const file of sources) {
   const text = readFileSync(file, "utf8");
   for (const m of text.matchAll(hrefPattern)) {
@@ -61,7 +92,7 @@ for (const file of sources) {
 }
 
 if (problems.length > 0) {
-  console.error(`Broken internal links:\n${problems.join("\n")}`);
+  console.error(`Broken internal links or orphan pages:\n${problems.join("\n")}`);
   process.exit(1);
 }
-console.log(`Link check passed (${routes.length} routes, ${ids.size} anchors).`);
+console.log(`Link check passed (${routes.length} routes, ${ids.size} anchors, ${sitemapRoutes.size} sitemap routes linked).`);

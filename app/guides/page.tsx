@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/landing/breadcrumbs";
 import { Footer } from "@/components/landing/footer";
 import { Logo } from "@/components/landing/logo";
 import { Section } from "@/components/landing/section";
@@ -29,6 +30,12 @@ export default function GuidesPage() {
       <main id="main" className="flex-1">
         <Section>
           <div className="max-w-3xl">
+            <Breadcrumbs
+              items={[
+                { name: "Home", path: "/" },
+                { name: "Guides", path: "/guides" },
+              ]}
+            />
             <h1 className="text-4xl font-medium leading-[1.08] tracking-[-0.045em] md:text-5xl">Guides</h1>
             <ul className="mt-12 space-y-10">
               {siteGuides.map((guide) => (

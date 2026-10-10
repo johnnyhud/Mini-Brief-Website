@@ -77,4 +77,5 @@ export const guide: Guide = {
       a: "Snooze hides an item for 3 days, and it comes back on its own.",
     },
   ],
+  related: ["see-what-you-promised-in-email", "one-daily-brief-for-gmail-and-outlook"],
 };

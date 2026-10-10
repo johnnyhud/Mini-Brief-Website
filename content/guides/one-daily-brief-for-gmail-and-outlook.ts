@@ -100,4 +100,5 @@ export const guide: Guide = {
       a: "Yes. Switch on Morning briefing by email under Settings, in Notifications, so the brief is waiting in your inbox.",
     },
   ],
+  related: ["outlook-admin-approval", "morning-brief-email"],
 };
