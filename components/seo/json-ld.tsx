@@ -75,6 +75,37 @@ export function BreadcrumbJsonLd({ items }: { items: ReadonlyArray<{ name: strin
   return <JsonLd data={data} />;
 }
 
+/**
+ * HowTo schema. Each step's name and text are the same strings the page
+ * renders, so every step maps to visible text. Step ids are `step-<n>` anchors.
+ */
+export function HowToJsonLd({
+  name,
+  description,
+  path,
+  steps,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  steps: ReadonlyArray<{ title: string; body: string }>;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.title,
+      text: step.body,
+      url: `${siteUrl}${path}#step-${index + 1}`,
+    })),
+  };
+  return <JsonLd data={data} />;
+}
+
 /** FAQ schema for a guide, from the same entries the article renders. Plain text only. */
 export function GuideFaqJsonLd({ items }: { items: ReadonlyArray<{ q: string; a: string }> }) {
   return <JsonLd data={faqPage(items)} />;

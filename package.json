@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test lib/guides.test.ts lib/faq.test.ts lib/site-url.test.ts lib/changelog.test.ts lib/cta.test.ts && node scripts/check-links.mjs"
+    "test": "node --experimental-strip-types --test lib/guides.test.ts lib/faq.test.ts lib/site-url.test.ts lib/changelog.test.ts lib/cta.test.ts lib/how-it-works.test.ts && node scripts/check-links.mjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",

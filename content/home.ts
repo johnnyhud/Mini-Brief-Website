@@ -237,6 +237,7 @@ export const footer = {
     links: [
       { label: "How it works", href: "#how-it-works" },
       { label: "FAQ", href: "#faq" },
+      { label: "How it works, step by step", href: "/how-it-works" },
       { label: "Why MiniBrief", href: "/why-minibrief" },
       { label: "Guides", href: "/guides" },
       { label: "Changelog", href: "/changelog" },
