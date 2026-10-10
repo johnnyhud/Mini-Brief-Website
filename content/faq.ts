@@ -34,7 +34,7 @@ export const faq = {
     },
     {
       q: "What does it cost?",
-      a: "Every account starts with a free trial. After that, one paid plan unlocks everything. Email michael@minibrief.app and we'll walk you through it.",
+      a: "Every account starts with a trial. After that, one paid plan unlocks everything. Email michael@minibrief.app and we'll walk you through it.",
     },
     {
       q: "Do I need my own AI key?",

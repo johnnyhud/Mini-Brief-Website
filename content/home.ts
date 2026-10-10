@@ -2,7 +2,7 @@
  * Shared marketing copy for the home page. Portal URLs come from lib/portal.ts,
  * contact details from lib/brand.ts.
  */
-import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "@/lib/portal";
+import { PORTAL_GET_STARTED_URL, PORTAL_SIGN_IN_URL } from "../lib/portal.ts";
 import type { ShotKey } from "./shots";
 
 export const nav = {
@@ -13,7 +13,7 @@ export const nav = {
     { label: "FAQ", href: "#faq" },
   ],
   signIn: { label: "Sign in", href: PORTAL_SIGN_IN_URL },
-  getStarted: { label: "Start free trial", href: PORTAL_GET_STARTED_URL },
+  getStarted: { label: "Get started", href: PORTAL_GET_STARTED_URL },
 } as const;
 
 export const hero = {
@@ -21,7 +21,7 @@ export const hero = {
   h1: "Less inbox.",
   accent: "More headspace.",
   sub: "Turn Gmail and Outlook into one clear brief. Know what needs you, reply in your own voice, and keep every promise in view.",
-  primary: { label: "Start your free trial", href: PORTAL_GET_STARTED_URL },
+  primary: { label: "Get started", href: PORTAL_GET_STARTED_URL },
   secondary: { label: "Try the interactive demo", href: "#interactive-demo" },
 } as const;
 
@@ -208,7 +208,7 @@ export const howItWorks = {
   steps: [
     {
       title: "Create your account",
-      body: "Sign up with your email. Every account starts with a free trial.",
+      body: "Sign up with your email. Every account starts with a trial.",
     },
     {
       title: "Connect Gmail or Outlook",
@@ -227,7 +227,7 @@ export { faq, type FaqItem } from "./faq.ts";
 export const cta = {
   h2: "Make room for the work that matters.",
   body: "MiniBrief is in beta for Gmail and Outlook. Create an account, connect a mailbox, and your first brief is minutes away.",
-  primary: { label: "Start your free trial", href: PORTAL_GET_STARTED_URL },
+  primary: { label: "Get started", href: PORTAL_GET_STARTED_URL },
 } as const;
 
 export const footer = {

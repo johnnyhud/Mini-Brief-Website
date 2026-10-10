@@ -70,7 +70,7 @@ export default function ConfirmedPage() {
       icon: <CheckCircle2 className="h-8 w-8" style={{ color: "#22d3a0" }} />,
       tint: "#22d3a0",
       title: "Email confirmed",
-      body: "Your MiniBrief account is active. Sign in to MiniBrief to start your free trial.",
+      body: "Your MiniBrief account is active. Sign in to MiniBrief to start your trial.",
     },
     expired: {
       icon: <Clock className="h-8 w-8" style={{ color: "#5b72ff" }} />,
