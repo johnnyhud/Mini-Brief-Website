@@ -67,7 +67,7 @@ export function Hero() {
                 className="h-3.5 w-3.5 text-[#3A5FDC]"
                 aria-hidden="true"
               />{" "}
-              Free trial. No separate AI bill.
+              No separate AI bill.
             </p>
           </div>
         </div>
