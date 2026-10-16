@@ -6,6 +6,14 @@
 // is_admin server-side, so this UI is convenience, not the boundary.
 
 import { getSupabaseBrowser, SUPABASE_URL } from "@/lib/supabase-browser";
+import {
+  fetchAiFeedbackWeekly,
+  fetchOnboardingChecklist,
+  type AiFeedbackWeeklyRow,
+  type OnboardingChecklistRow,
+} from "@/lib/admin-rpc";
+
+export type { AiFeedbackWeeklyRow, OnboardingChecklistRow };
 
 export interface AdminAccountRow {
   email: string;
@@ -119,4 +127,24 @@ export async function getActivationFunnel(
     for (const k of RETURNER_COLS) row[k] = r[k] == null ? null : Number(r[k]);
     return row as unknown as ActivationFunnelRow;
   });
+}
+
+// Same contract as getActivationFunnel: session check, 42501 → "forbidden",
+// bigint → number normalisation (see lib/admin-rpc.ts).
+export async function getOnboardingChecklist(
+  from: string,
+  to: string,
+): Promise<OnboardingChecklistRow[]> {
+  const sb = getSupabaseBrowser();
+  if (!sb) throw new Error("Supabase not configured");
+  return fetchOnboardingChecklist(sb, from, to);
+}
+
+export async function getAiFeedbackWeekly(
+  from: string,
+  to: string,
+): Promise<AiFeedbackWeeklyRow[]> {
+  const sb = getSupabaseBrowser();
+  if (!sb) throw new Error("Supabase not configured");
+  return fetchAiFeedbackWeekly(sb, from, to);
 }
