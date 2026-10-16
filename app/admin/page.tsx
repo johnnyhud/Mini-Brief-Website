@@ -10,11 +10,16 @@ import { getSupabaseBrowser } from "@/lib/supabase-browser";
 import {
   adminApi,
   getActivationFunnel,
+  getAiFeedbackWeekly,
+  getOnboardingChecklist,
   type ActivationFunnelRow,
   type AdminAccountRow,
+  type AiFeedbackWeeklyRow,
   type AuditRow,
+  type OnboardingChecklistRow,
   type Overview,
 } from "@/lib/admin-api";
+import { formatPctUp, onboardingTotals } from "@/lib/admin-rpc";
 
 type Phase = "loading" | "config" | "login" | "denied" | "ready";
 
@@ -160,6 +165,8 @@ function Dashboard({
   const [loading, setLoading] = useState(true);
   const [busyEmail, setBusyEmail] = useState<string | null>(null);
   const [confirmDel, setConfirmDel] = useState<string | null>(null);
+  // Date range last applied in the funnel form; the other report sections follow it.
+  const [appliedRange, setAppliedRange] = useState(() => ActivationFunnel.defaultRange());
 
   const load = useCallback(async (query: string) => {
     setLoading(true);
@@ -362,7 +369,9 @@ function Dashboard({
         )}
       </div>
 
-      <FunnelSection />
+      <FunnelSection onApply={setAppliedRange} />
+      <OnboardingSection range={appliedRange} />
+      <AiFeedbackSection range={appliedRange} />
 
       {/* Audit log */}
       <div className="mt-10">
@@ -395,7 +404,11 @@ function Dashboard({
   );
 }
 
-function FunnelSection() {
+function FunnelSection({
+  onApply,
+}: {
+  onApply: (range: { from: string; to: string }) => void;
+}) {
   const [range, setRange] = useState(() => ActivationFunnel.defaultRange());
   const [rows, setRows] = useState<ActivationFunnelRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -429,6 +442,7 @@ function FunnelSection() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          onApply({ from: range.from, to: range.to });
           void load(range.from, range.to);
         }}
         className="mt-3 flex flex-wrap gap-2"
@@ -504,6 +518,166 @@ function FunnelSection() {
         <li>Returners count AI activity only.</li>
         <li>Returner totals cover finished days only; — means not yet available.</li>
       </ul>
+    </div>
+  );
+}
+
+type Loaded<T> =
+  | { status: "loading" }
+  | { status: "error"; forbidden: boolean }
+  | { status: "ok"; rows: T[] };
+
+// Loads one report for the shared range. A failure becomes an error state,
+// never an empty/zero result, and never affects the other sections.
+function useRangeReport<T>(
+  range: { from: string; to: string },
+  fetcher: (from: string, to: string) => Promise<T[]>,
+): Loaded<T> {
+  const [state, setState] = useState<Loaded<T>>({ status: "loading" });
+  const { from, to } = range;
+
+  useEffect(() => {
+    let cancelled = false;
+    setState({ status: "loading" });
+    fetcher(from, to).then(
+      (rows) => {
+        if (!cancelled) setState({ status: "ok", rows });
+      },
+      (e: unknown) => {
+        if (!cancelled)
+          setState({ status: "error", forbidden: (e as Error).message === "forbidden" });
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [from, to, fetcher]);
+
+  return state;
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-fg-3">
+      {children}
+    </h2>
+  );
+}
+
+function SectionError({ forbidden, what }: { forbidden: boolean; what: string }) {
+  return (
+    <p className="mt-4 text-sm text-fg-3">
+      {forbidden ? `Not authorized to view ${what}.` : `Couldn’t load ${what}.`}
+    </p>
+  );
+}
+
+function OnboardingSection({ range }: { range: { from: string; to: string } }) {
+  const state = useRangeReport<OnboardingChecklistRow>(range, getOnboardingChecklist);
+  const columns: Array<[string, keyof ReturnType<typeof onboardingTotals>]> = [
+    ["Signups", "signups"],
+    ["Skipped never-miss", "skipped_never_miss"],
+    ["First brief seen", "first_brief_seen"],
+    ["Dismissed", "dismissed"],
+  ];
+
+  return (
+    <div className="mt-10">
+      <SectionHeading>Onboarding checklist</SectionHeading>
+      {state.status === "error" ? (
+        <SectionError forbidden={state.forbidden} what="the onboarding checklist" />
+      ) : state.status === "loading" ? (
+        <p className="mt-4 text-sm text-fg-3">Loading…</p>
+      ) : (
+        <div className="mt-4 overflow-x-auto rounded-2xl border border-border bg-white/[0.02]">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="text-left text-[10px] uppercase tracking-wider text-fg-3">
+                <th className="px-3 py-2">Day (UTC)</th>
+                {columns.map(([label]) => (
+                  <th key={label} className="px-3 py-2 text-right">
+                    {label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="text-fg">
+              <tr className="border-t border-border font-semibold">
+                <td className="px-3 py-2">Total</td>
+                {columns.map(([label, key]) => (
+                  <td key={label} className="px-3 py-2 text-right">
+                    {onboardingTotals(state.rows)[key]}
+                  </td>
+                ))}
+              </tr>
+              {state.rows.map((r) => (
+                <tr key={r.day} className="border-t border-border">
+                  <td className="px-3 py-2 text-fg-3">{r.day}</td>
+                  {columns.map(([label, key]) => (
+                    <td key={label} className="px-3 py-2 text-right">
+                      {r[key]}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+              {state.rows.length === 0 && (
+                <tr className="border-t border-border">
+                  <td colSpan={5} className="px-3 py-4 text-center text-fg-3">
+                    No data in this range.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AiFeedbackSection({ range }: { range: { from: string; to: string } }) {
+  const state = useRangeReport<AiFeedbackWeeklyRow>(range, getAiFeedbackWeekly);
+
+  return (
+    <div className="mt-10">
+      <SectionHeading>AI feedback</SectionHeading>
+      {state.status === "error" ? (
+        <SectionError forbidden={state.forbidden} what="AI feedback" />
+      ) : state.status === "loading" ? (
+        <p className="mt-4 text-sm text-fg-3">Loading…</p>
+      ) : (
+        <div className="mt-4 overflow-x-auto rounded-2xl border border-border bg-white/[0.02]">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="text-left text-[10px] uppercase tracking-wider text-fg-3">
+                <th className="px-3 py-2">Week (UTC)</th>
+                <th className="px-3 py-2">Feature</th>
+                <th className="px-3 py-2 text-right">Up</th>
+                <th className="px-3 py-2 text-right">Down</th>
+                <th className="px-3 py-2 text-right">% up</th>
+              </tr>
+            </thead>
+            <tbody className="text-fg">
+              {state.rows.map((r) => (
+                <tr key={`${r.week}|${r.feature}`} className="border-t border-border">
+                  <td className="px-3 py-2 text-fg-3">{r.week}</td>
+                  <td className="px-3 py-2">{r.feature}</td>
+                  <td className="px-3 py-2 text-right">{r.up}</td>
+                  <td className="px-3 py-2 text-right">{r.down}</td>
+                  <td className="px-3 py-2 text-right">{formatPctUp(r.up, r.down)}</td>
+                </tr>
+              ))}
+              {state.rows.length === 0 && (
+                <tr className="border-t border-border">
+                  <td colSpan={5} className="px-3 py-4 text-center text-fg-3">
+                    No feedback in this range.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
