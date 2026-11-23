@@ -4,10 +4,17 @@ import { WORDMARK } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 /**
- * Icon + wordmark, linking home. Inherits the surrounding text colour, so it
- * reads as ink on the light home page and white on the dark kept pages.
+ * Executive "MB." mark + wordmark, linking home. The wordmark inherits the
+ * surrounding text colour; pass tone="dark" where the Logo sits on a dark
+ * background to use the cream on-dark mark.
  */
-export function Logo({ className }: { className?: string }) {
+export function Logo({
+  className,
+  tone = "light",
+}: {
+  className?: string;
+  tone?: "light" | "dark";
+}) {
   return (
     <Link
       href="/"
@@ -17,11 +24,12 @@ export function Logo({ className }: { className?: string }) {
       )}
     >
       <Image
-        src="/photos/MiniBrief-Icon-Mono-Ink.png"
+        src={tone === "dark" ? "/brand/executive-on-dark.svg" : "/brand/executive-on-light.svg"}
         alt=""
-        width={32}
+        width={56}
         height={32}
-        className="rounded-[22%]"
+        unoptimized
+        className="h-[32px] w-[56px] shrink-0"
       />
       <span className="text-lg font-semibold tracking-tight max-[359px]:sr-only">{WORDMARK}</span>
     </Link>

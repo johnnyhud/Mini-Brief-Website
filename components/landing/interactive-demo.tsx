@@ -128,11 +128,12 @@ export function InteractiveDemo() {
       <div className="flex min-h-14 flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-brand-ink/[0.08] bg-[#FCFCFD] px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2.5">
           <Image
-            src="/photos/MiniBrief-Icon-Mono-Ink.png"
+            src="/brand/executive-on-light.svg"
             alt=""
-            width={28}
+            width={48}
             height={28}
-            className="size-7 shrink-0 rounded-[22%]"
+            unoptimized
+            className="h-[28px] w-[48px] shrink-0"
           />
           <span className="text-sm font-bold tracking-tight">MiniBrief</span>
         </div>

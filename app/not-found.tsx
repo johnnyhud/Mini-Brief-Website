@@ -28,7 +28,7 @@ export default function NotFound() {
       <div className="bg-grid" aria-hidden="true" />
 
       <nav className="relative z-10 flex items-center border-b border-white/[0.06] backdrop-blur-md px-6 sm:px-12 py-3.5">
-        <Logo />
+        <Logo tone="dark" />
       </nav>
 
       <section className="relative z-[1] flex-1 flex flex-col items-center justify-center text-center px-6 py-16">
