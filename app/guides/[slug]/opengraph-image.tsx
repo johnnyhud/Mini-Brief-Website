@@ -18,7 +18,7 @@ export default async function GuideOpengraphImage({ params }: { params: Promise<
   const guide = getSiteGuide((await params).slug);
   const title = guide?.title ?? WORDMARK;
   const [icon, interRegular, interSemiBold] = await Promise.all([
-    readFile(join(process.cwd(), "public/photos/MiniBrief-Icon-Mono-Ink.png")),
+    readFile(join(process.cwd(), "public/brand/executive-on-light.png")),
     readFile(join(process.cwd(), "app/fonts/og/Inter-Regular.ttf")),
     readFile(join(process.cwd(), "app/fonts/og/Inter-SemiBold.ttf")),
   ]);
@@ -53,7 +53,7 @@ export default async function GuideOpengraphImage({ params }: { params: Promise<
         />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <img src={iconSrc} width={46} height={46} style={{ borderRadius: 12 }} alt="" />
+            <img src={iconSrc} width={80} height={46} alt="" />
             <div style={{ fontSize: 30, fontWeight: 600, letterSpacing: "-0.035em", display: "flex" }}>{WORDMARK}</div>
           </div>
           <div style={{ display: "flex", fontSize: 16, color: "#475569" }}>minibrief.app</div>

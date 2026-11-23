@@ -77,7 +77,7 @@ export const whatItDoes = {
     },
   ],
   closing:
-    "Also included: catch-up reports after time away, VIP alerts when someone important goes quiet, meeting prep from your calendar, a tone check before you send, and one-click unsubscribe.",
+    "Also included: Ask MiniBrief for questions about your mail, a timed Focus session for working through replies, scheduled send, a notice when a send bounces, Smart Folders you describe in plain English, meeting prep from your calendar, catch-up reports after time away, VIP alerts when someone important goes quiet, a tone check before you send, and one-click unsubscribe.",
 } as const;
 
 export const privacy = {

@@ -21,7 +21,7 @@ export const faq = {
     },
     {
       q: "Does it work on my phone?",
-      a: "MiniBrief is a web app, so there is nothing to install and it opens in any modern browser. It's designed for the desktop browser first.",
+      a: "Yes. MiniBrief is a web app, so there's nothing to download from an app store. On a computer it opens in any modern browser. On a phone it has its own layout with a bottom tab bar, and on iPhone you can add it to your Home Screen and open it like an app.",
     },
     {
       q: "Can my team use it on shared inboxes?",

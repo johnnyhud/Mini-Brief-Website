@@ -21,7 +21,7 @@ export function SiteJsonLd() {
     "@id": `${siteUrl}/#organization`,
     name: WORDMARK,
     url: siteUrl,
-    logo: `${siteUrl}/photos/MiniBrief-Icon-Mono-Ink.png`,
+    logo: `${siteUrl}/brand/executive-on-light.png`,
     description: metadata.description,
     email: CONTACT_EMAIL,
     sameAs: [LINKEDIN_URL],

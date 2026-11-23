@@ -11,7 +11,7 @@ export const contentType = "image/png";
 // Rendered at build time from local files; nothing is fetched.
 export default async function OpengraphImage() {
   const [icon, shot, interRegular, interSemiBold] = await Promise.all([
-    readFile(join(process.cwd(), "public/photos/MiniBrief-Icon-Mono-Ink.png")),
+    readFile(join(process.cwd(), "public/brand/executive-on-light.png")),
     readFile(join(process.cwd(), "public/shots/hero.png")),
     readFile(join(process.cwd(), "app/fonts/og/Inter-Regular.ttf")),
     readFile(join(process.cwd(), "app/fonts/og/Inter-SemiBold.ttf")),
@@ -58,9 +58,8 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <img
               src={iconSrc}
-              width={46}
+              width={80}
               height={46}
-              style={{ borderRadius: 12 }}
               alt=""
             />
             <div
